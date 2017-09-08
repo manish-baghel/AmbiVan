@@ -1,0 +1,28 @@
+{
+  "name": "ambivan",
+  "version": "1.0.0",
+  "description": "Ambivan design Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error:no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://manish_baghel@bitbucket.org/manish_baghel/ambivan.git"
+  },
+  "author": "Manish Baghel",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/manish_baghel/ambivan#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "mysql": "^2.14.1",
+    "path": "^0.12.7",
+    "q": "^1.5.0"
+  }
+}
