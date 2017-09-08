@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://manish_baghel@bitbucket.org/manish_baghel/ambivan.git"
+    "url": "git+https://github.com/manish-baghel/AmbiVan.git"
   },
   "author": "Manish Baghel",
   "license": "ISC",
@@ -18,7 +18,7 @@
     "body-parser": "^1.16.0",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
-    "ejs": "^2.5.5",
+    "ejs": "^2.5.7",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
     "mysql": "^2.14.1",
