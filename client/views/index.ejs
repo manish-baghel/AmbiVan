@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-   <title>Index</title>
-</head>
-<body>
-<!--Google Tag Manager-->
-<%include partials/_gtm_script.ejs%>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        left: 300px;
+        height: 1000px;
+        width: 84.5%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 
-<p class=""></p>
-<!--footer partial-->
-</body>
+	 <script type="text/javascript" src="../scripts/script.js"></script>
+	
+
+  </head>
+  <body>
+    <div id="map"></div>
+	
+
+ 
+    	       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY&callback=initMap"
+  type="text/javascript"></script>
+
+  </body>
 </html>
