@@ -13,7 +13,7 @@
   },
   "author": "Manish Baghel",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/manish_baghel/ambivan#readme",
+  "homepage": "https://github.com/manish-baghel/AmbiVan.git",
   "dependencies": {
     "body-parser": "^1.16.0",
     "compression": "^1.6.2",
