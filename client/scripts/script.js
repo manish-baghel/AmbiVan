@@ -15,12 +15,26 @@ var Markers = [];
 var infoWindow ;
 
 
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+host     : 'localhost',
+user     : 'root',
+password : 'PASSWORD',
+database : 'ambivan'
+});
 
 function initMap() 
 {
 
-
-
+/*connection.connect();
+        connection.query("SELECT * FROM ambivan", 
+            function(err,result,fields) {
+                if (err) throw err;
+		console.log(result);
+            }
+        ); 
+        connection.end();
+*/
 	var styles = [
 
         // hide Google's labels
