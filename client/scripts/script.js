@@ -48,7 +48,7 @@ function initMap()
 		zoomControl: true,
 		center: {lat: -34.397, lng: 150.644},
 		styles: styles,
-        	zoom: 9
+        	zoom: 11
     	}
 
         infoWindow = new google.maps.InfoWindow;
@@ -75,7 +75,7 @@ function initMap()
             		map.setCenter(pos);
 			//addMarker(data);
 			addMarker(pos);
-			addMarker(data);
+			//addMarker(data);
           	}, function() {
             		handleLocationError(true, infoWindow, map.getCenter());
           	});
@@ -164,11 +164,13 @@ function configure()
 {
     // update UI after map has been dragged
     google.maps.event.addListener(map, "dragend", function() {
+	//removediv();
         update();
     });
 
     // update UI after zoom level changes
     google.maps.event.addListener(map, "zoom_changed", function() {
+	//removediv();
         update();
     });
 
@@ -194,12 +196,13 @@ function configure()
 
 function removeMarkers()
 {
-	removediv();
+	
     for(var i=0;i<Markers.length;i++)
     {
         Markers[i].setMap(null);
     }
     Markers.length = 0;
+removediv();
 }
 
 
@@ -242,7 +245,7 @@ function update()
        // removeMarkers();
 	
         // add new markers to map
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 3; i++)
         {
             addMarker(data);
         }
@@ -252,6 +255,7 @@ function update()
          // log error to browser's console
          console.log(errorThrown.toString());
      });*/
+	//removediv();
 }
 
 function showInfo(place)
@@ -274,4 +278,5 @@ var elem = document.getElementById('pj');
 while(elem!=null){
   elem = document.getElementById('pj');
  elem.parentNode.removeChild(elem);}
+
 }
