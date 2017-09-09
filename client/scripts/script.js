@@ -14,27 +14,11 @@ var Markers = [];
 // info window
 var infoWindow ;
 
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-host     : 'localhost',
-user     : 'root',
-password : 'PASSWORD',
-database : 'ambivan'
-});
+var data = { id:"0", hospiname:"my hospiname",lng:77.3759,lat:28.5120};
 
 function initMap() 
 {
 
-/*connection.connect();
-        connection.query("SELECT * FROM ambivan", 
-            function(err,result,fields) {
-                if (err) throw err;
-		console.log(result);
-            }
-        ); 
-        connection.end();
-*/
 	var styles = [
 
         // hide Google's labels
@@ -42,7 +26,7 @@ function initMap()
             featureType: "all",
             elementType: "labels",
             stylers: [
-                {visibility: "off"}
+                {visibility: "on"}
             ]
         },
 
@@ -51,71 +35,124 @@ function initMap()
             featureType: "road",
             elementType: "geometry",
             stylers: [
-                {visibility: "off"}
+                {visibility: "on"}
             ]
         }
 
     ];
+
       
-	map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
+	//map = new google.maps.Map(document.getElementById('map'),
+	var options = 	
+	{
+		zoomControl: true,
+		center: {lat: -34.397, lng: 150.644},
+		styles: styles,
+        	zoom: 9
+    	}
 
         infoWindow = new google.maps.InfoWindow;
 
         // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+        if (navigator.geolocation) 
+	{
+        	navigator.geolocation.getCurrentPosition(function(position)
+		{
+            		var pos = {
+              			//lat: data.latitude,
+				lat: position.coords.latitude,
+              			lng: position.coords.longitude
+				//lng: data.longitude
+            		};
+			console.log(pos);
+			
+		//	data.latitude = pos.lat;
+		//	data.longitude = pos.lng;
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location has found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+            		infoWindow.setPosition(pos);
+            		infoWindow.setContent('Location has found.');
+            		infoWindow.open(map);
+            		map.setCenter(pos);
+			//addMarker(data);
+			addMarker(pos);
+			addMarker(data);
+          	}, function() {
+            		handleLocationError(true, infoWindow, map.getCenter());
+          	});
+        } 
+	else 
+	{
+          	// Browser doesn't support Geolocation
+        	handleLocationError(false, infoWindow, map.getCenter());
         }
-      }
+ 	// get DOM node in which map will be instantiated
+   	var canvas = $("#map").get(0);
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    	// instantiate map
+   		map = new google.maps.Map(canvas,options);
+
+    	// configure UI once Google Map is idle (i.e., loaded)
+  		google.maps.event.addListenerOnce(map, "idle", configure);
+
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
-
-    // options for map
-    // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-/*
-    var options = {
-        center: {lat: 37.4236, lng: -122.1619}, // Stanford, California
-        disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 14,
-        panControl: true,
-        styles: styles,
-        zoom: 13,
-        zoomControl: true
-    };*/
-
-    // get DOM node in which map will be instantiated
-   // var canvas = $("#map-canvas").get(0);
-
-    // instantiate map
-   // map = new google.maps.Map(canvas, options);
-
-    // configure UI once Google Map is idle (i.e., loaded)
-  // google.maps.event.addListenerOnce(map, "idle", configure);
-
 }  
+
+function addMarker(place)
+{
+    // creating marker
+    
+   /*var marker = new google.maps.Marker({
+	icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",	
+	position: new google.maps.LatLng(place.latitude, place.longitude),
+	map: map,
+	labelOrigin: (20,100),
+	label: place.place_name + ", " + place.admin_name1 ,
+	anchor: new google.maps.Point(200,100),
+	
+//	labelClass: "label"
+    });*/
+	/*	var labels = place.hospiname;
+      var labelIndex = 0;
+	var myLatLng = {lat: place.lat, lng: place.lng};
+	console.log(myLatLng);
+		
+var icon = {
+    url: "../assets/images/hos.png", // url
+    scaledSize: new google.maps.Size(30, 30), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(15, 30) // anchor
+};
+
+	 var marker = new google.maps.Marker({
+	          position: myLatLng,
+			//icon: icon,
+	          map: map,
+		// label: labels,
+	          title: 'Hello World!'
+        });
+	
+*/
+    var marker = new MarkerWithLabel({
+	//icon: "http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
+	position: new google.maps.LatLng(place.lat, place.lng),
+	map: map,
+	labelContent: place.hospiname ,
+	labelAnchor: new google.maps.Point(30, 0),
+	labelClass: "tag",
+    });
+   showInfo(place);
+    
+   // google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
+    Markers.push(marker);
+    
+}
 
 
 
@@ -155,7 +192,15 @@ function configure()
    
 }
 
-
+function removeMarkers()
+{
+	removediv();
+    for(var i=0;i<Markers.length;i++)
+    {
+        Markers[i].setMap(null);
+    }
+    Markers.length = 0;
+}
 
 
 
@@ -181,29 +226,52 @@ function update()
    // .done(function(data, textStatus, jqXHR)*/
 	 
 
-		var sql1 = "SELECT * FROM ambivan";
+/*		var sql1 = "SELECT * FROM ambivan";
 
 		con.query(sql1,function(err,result,fields) {
 		if(err) throw console.log(err.toString());
 		var jsonPretty = JSON.stringify(result,null,2);  
 		console.log("Result: " +jasonPretty);
 		});
-		
-	
-/*
-        // remove old markers from map
-        removeMarkers();
+*/		
+	// remove div elements
+	//removediv();
 
+//var data = { id:"0", hospiname:"my hospiname",longitude:-34.397,latitude:150.644};
+        // remove old markers from map
+       // removeMarkers();
+	
         // add new markers to map
-        for (var i = 0; i < data.length; i++)
+        for (var i = 0; i < 5; i++)
         {
-            addMarker(data[i]);
+            addMarker(data);
         }
-     });
-     .fail(function(jqXHR, textStatus, errorThrown) {
+     
+     /*.fail(function(jqXHR, textStatus, errorThrown) {
 
          // log error to browser's console
          console.log(errorThrown.toString());
      });*/
 }
 
+function showInfo(place)
+{
+var div = "";//="<section id='sidebar'> ";
+div+= "<div id='pj' class='details'>";
+div+= "<p>"+ place.hospiname +"</p>";
+div+= "<p>"+ place.lat +"</p>";
+div+= "<p>"+ place.lng + "</p>" ;
+
+div+="</div>";
+//div+="</section>";
+document.getElementById('sidebar').innerHTML+=div;
+
+}
+
+
+function removediv() {
+var elem = document.getElementById('pj');
+while(elem!=null){
+  elem = document.getElementById('pj');
+ elem.parentNode.removeChild(elem);}
+}
