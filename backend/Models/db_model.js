@@ -8,15 +8,13 @@ database : 'ambivan'
 
 
 module.exports = {
-    getNameFromTable: function(query,callback)
+    getDataFromTable: function(query,callback)
     {
-        connection.connect();
         connection.query(query, 
-            function(err,result,fields) {
+            function(err,result,fields){
                 if (err) return callback(err, null);
                 return callback(null, result);
             }
-        ); 
-        connection.end();
+        );  
     },
 }

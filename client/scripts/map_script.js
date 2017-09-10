@@ -14,29 +14,9 @@ var Markers = [];
 // info window
 var infoWindow ;
 
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-host     : 'localhost',
-user     : 'root',
-password : 'PASSWORD',
-database : 'ambivan'
-});
-
 function initMap() 
 {
-
-/*connection.connect();
-        connection.query("SELECT * FROM ambivan", 
-            function(err,result,fields) {
-                if (err) throw err;
-		console.log(result);
-            }
-        ); 
-        connection.end();
-*/
 	var styles = [
-
         // hide Google's labels
         {
             featureType: "all",
@@ -54,9 +34,7 @@ function initMap()
                 {visibility: "off"}
             ]
         }
-
-    ];
-      
+    ];  
 	map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 15
@@ -67,25 +45,43 @@ function initMap()
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
             infoWindow.setContent('Location has found.');
             infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
+            
+          },
+        function() {
             handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
+          }
+        );
+      }
+    else {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+        var obj = {
+            NE:{
+            lat: -34.397,
+            lng: 150.644
+            },
+            SW:{
+            lat:37.4236,
+            lng:-122.1619
+            }
+        }
+        var objString = JSON.stringify(obj);
+       $.post('http://localhost:4000', obj)
+        .done(function(data){
+           var pos = {
+              lat: parseInt(data[1].latitude),
+              lng: parseInt(data[1].longitude)
+            };
+           map.setCenter(pos);
+           infoWindow.setPosition(pos);
+            console.log(data[1].longitude+" "+data[1].latitude);
+        });
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
@@ -179,15 +175,16 @@ function update()
     };
  //   $.getJSON("update.js", parameters)
    // .done(function(data, textStatus, jqXHR)*/
-	 
 
-		var sql1 = "SELECT * FROM ambivan";
-
-		con.query(sql1,function(err,result,fields) {
-		if(err) throw console.log(err.toString());
-		var jsonPretty = JSON.stringify(result,null,2);  
-		console.log("Result: " +jasonPretty);
-		});
+    
+    
+//		var sql1 = "SELECT * FROM ambivan";
+//
+//		con.query(sql1,function(err,result,fields) {
+//		if(err) throw console.log(err.toString());
+//		var jsonPretty = JSON.stringify(result,null,2);  
+//		console.log("Result: " +jasonPretty);
+//		});
 		
 	
 /*
