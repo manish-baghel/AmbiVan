@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <script src="https://cdn.optimizely.com/js/8154213374.js"></script>
+<!-- Google Tag Manager -->
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WWCJFM');
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- start Mixpanel -->
+<script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("262db7c87e359fb149fcc269c4fbcc0b");</script>
+<!-- end Mixpanel -->    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1026.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+    <title>24/7 Ambulance Service. Basic & Advanced Ambulance | MUrgency</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap and Font Awesome css-->
+    <!-- we use cdn but you can also include local files located in css directory-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ambulance/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Google fonts - Montserrat for headings, Cardo for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Cardo:400,400italic,700">
+    <!-- onepage scroll stylesheet-->
+    <link rel="stylesheet" href="/css/ambulance/onepage-scroll.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/css/ambulance/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/css/ambulance/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/public/images/favicon.ico">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWCJFM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="wrapper">
+    <div class="main">
+        <!-- page 1-->
+        <section id="page1">
+            <!--                <div class="overlay"></div>-->
+            <div class="content">
+                <div class="section clearfix">
+                    <!-- navbar -->
+                    <div class="col-sm-6 col-xs-5">
+                        <h1 class="brand"><a href="/"><img src="/images/logo-01.png" alt=""></a></h1></div>
+                    <div class="col-sm-6 col-xs-7 form">
+                        <form action="javascript:void(0)" enctype="multipart/form-data"
+                              class="form-horizontal pull-right" name="frm-callback">
+                            <div class="form-group">
+                                <div class="col-sm-12 clearfix">
+                                    <p class="hidden-xs"><a href="tel:+919111891118">Call Now: +91 - 9111891118</a></p>
+                                    <p class="visible-xs"><a href="tel:+919111891118">Call Now <br />+91 - 9111891118</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="section clearfix">
+                    <div class="col-sm-12">
+                        <div class="ambu-sec flyLeft">
+                            <h1 class=""><span>Largest <span class="text-red">Ambulance Network</span></span> in India
+                            </h1> <span class="ambulance flyLeft"></span>
+                            <p>24/7 Ambulance Service | 300+ Verified Ambulances | 2000+ Trained Medical
+                                Professionals </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul>
+                                <li class="response">
+                                    <h3>Instant Response</h3>
+                                    <p>Our 24/7 support team ensures you get an instant response</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul>
+                                <li class="quality">
+                                    <h3>Assured Quality </h3>
+                                    <p>All of the Ambulances and Paramedics go through a vigorous validation
+                                        process. </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul>
+                                <li class="price">
+                                    <h3>Best Prices</h3>
+                                    <p>We help you get the best quotes</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="section clearfix visible-xs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center formSec">
+                                <p class="textBold">"Book an ambulance in less than 30 seconds."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section clearfix bg-red visible-xs">
+                    <button class="btn btn-callback" data-target="" data-toggle="modal">Get Instance Callback</button>
+                </div>
+                <div class="section clearfix bg-gray hidden-xs">
+                    <div class="container bg-white p10">
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <img src="/images/ambulance/basic_ambu.png" alt="Basic Ambulance (BLS)" class="" title="Basic Ambulance (BLS)">
+                                <p><span class="text-red">Basic Ambulance (BLS)</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <img src="/images/ambulance/adv_ambu.png" alt="Advance Ambulance (BLS)" class="" title="Advance Ambulance (BLS)">
+                                <p><span class="text-red">Advance Ambulance (BLS)</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <img src="/images/ambulance/out_ambu.png" alt="Outstation Transfer" class="" title="Outstation Transfer">
+                                <p><span class="text-red">Outstation Transfer</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <img src="/images/ambulance/cold_ambu.png" alt="Ambulance for Cold Transfer" class="" title="Ambulance for Cold Transfer">
+                                <p><span class="text-red">Ambulance for Cold Transfer</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2 text-center formSec hidden-xs"> 
+                                <form method="POST" action="https://murgency.com/ambulance/type2" accept-charset="UTF-8" class="form-horizontal clearfix" id="requestcallback" name="frm-booknow" onsubmit="return ValidateTop();"><input name="_token" type="hidden" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                                    <div class="form-group" style="margin-bottom: 0px;">
+                                        <div class="col-sm-4 col-xs-8 mb10">
+                                            <input type="hidden" name="ambu_type" value="" id="ambu_type">
+                                            <input type="hidden" name="url" id="url"
+                                                   value=" ">
+                                                                                        <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="Name(optional)">
+                                            <label for="ErrorName" id="errName"></label>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-8 mb10">
+                                            <input type="text" name="phone" id="phone" class="form-control"
+                                                   placeholder="Mobile No.">
+                                            <label for="ErrorPhone" id="errPhone"></label>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-8 mb10">
+                                            <button type="submit" class="btn btn-primary" name="btn_book" id="btn_book">Book an Ambulance
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section clearfix hidden-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center formSec">
+                            <ul>
+                                <li>Delhi</li>
+                                <li>Gurgoan</li>
+                                <li>Noida</li>
+                                <li>Mumbai</li>
+                                <li>Jaipur</li>
+                                <li>Bangalore</li>
+                                <li>Chandigarh</li>
+                                <li>Panchkula</li>
+                                <li>Mohali</li>
+                                <li>Amritsar</li>
+                                <li>Jalandhar</li>
+                                <li>Ludhiana</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <a style="visibility:hidden;" href="#second" class="next"><img
+                                        src="/images/ambulance/home-next.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- page 2-->
+        <section id="page2">
+            <div class="content second">
+                <div class="container bg-white visible-xs">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h4 id="TypeError" class="head">Type of Ambulance</h4>
+                            <div class="col-sm-3 ambu_type text-center" title="Basic Ambulance (BLS)">
+                                <img src="/images/ambulance/basic_ambu.png" alt="Basic Ambulance (BLS)" class="" title="Basic Ambulance (BLS)">
+                                <p><span class="text-red">Basic Ambulance (BLS)</span></p>
+                            </div>
+                            <div class="col-sm-3 ambu_type type2" title="Advance Ambulance (ALS)">
+                                <img src="/images/ambulance/adv_ambu.png" alt="Advance Ambulance (BLS)" class="" title="Advance Ambulance (BLS)">
+                                <p><span class="text-red">Advance Ambulance (BLS)</span></p>
+                            </div>
+                            <div class="col-sm-3 ambu_type type3" title="Outstation Ambulance">
+                                <img src="/images/ambulance/out_ambu.png" alt="Outstation Transfer" class="" title="Outstation Transfer">
+                                <p><span class="text-red">Outstation Transfer</span></p>
+                            </div>
+                            <div class="col-sm-3 ambu_type type4" title="Cold Transfer">
+                                <img src="/images/ambulance/cold_ambu.png" alt="Ambulance for Cold Transfer" class="" title="Ambulance for Cold Transfer">
+                                <p><span class="text-red">Ambulance for Cold Transfer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix hidden-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red hidden-xs">Investors</h2>
+                            <h2 class="sechead visible-xs">Ratan Tata Supports MUrgency's Vision</h2>
+                            <div class="col-md-7 col-md-offset-1 bg-orange about pr0">
+                                <div class="aboutSec">
+                                    <h2 class="sechead hidden-xs">Ratan Tata Supports MUrgency's Vision</h2>
+                                    <p>"Ratan Tata’s involvement is an affirmation of the importance of a reliable emergency medical response network for the world and of course India to save lives which are otherwise lost for want of timely medical attention."</p>
+                                </div>
+                                <small>- Ratan Tata invests in MUrgency, YourStory</small>
+                            </div>
+                            <div class="col-md-3 pl0 m0 for-xs"><img src="/images/ambulance/about.jpg" alt="About">
+                            </div>
+                        </div>
+                        <div class="col-md-11 text-right">
+                            <p class="redirect" style="visibility:hidden;">
+                                <a href=""><img src="/images/ambulance/next-arrow.png" alt=""></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section clearfix bg-red visible-xs">
+                <button class="btn btn-callback">Book an Ambulance</button>
+            </div>
+        </section>
+        <!-- page 3 - class section-gray adds gray background-->
+        <section id="page3" class="section-gray">
+            <div class="content third">
+                <div class="container clearfix visible-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red hidden-xs">Investors</h2>
+                            <h2 class="sechead visible-xs">Ratan Tata Supports MUrgency's Vision</h2>
+                            <div class="col-md-7 col-md-offset-1 bg-orange about pr0">
+                                <div class="aboutSec">
+                                    <h2 class="sechead hidden-xs">Ratan Tata Supports MUrgency's Vision</h2>
+                                    <p>"Ratan Tata’s involvement is an affirmation of the importance of a reliable emergency medical response network for the world and of course India to save lives which are otherwise lost for want of timely medical attention."</p>
+                                </div>
+                                <small>- Ratan Tata invests in MUrgency, YourStory</small>
+                            </div>
+                            <div class="col-md-3 pl0 m0 for-xs"><img src="/images/ambulance/about.jpg" alt="About">
+                            </div>
+                        </div>
+                        <div class="col-md-11 text-right">
+                            <p class="redirect" style="visibility:hidden;">
+                                <a href=""><img src="/images/ambulance/next-arrow.png" alt=""></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix hidden-xs">
+                    <div class="row services">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red">Basic Ambulance (BLS)</h2>
+                            <div class="row">
+                                <h4 class="heading">Basic Ambulance includes</h4>
+                                <div class="col-md-offset-2 col-md-8 text-center">
+                                    <ul>
+                                        <li><img src="/images/ambulance/bls1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/bls2.png" alt="">
+                                            <p>Stretcher</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/bls3.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-offset-2 col-md-8 text-center mb20">
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Non-emergency Medical Transfer | Inter-facility Transfers</p>
+                                </div>
+                                <div class="col-md-offset-2 col-md-8 text-center mb20">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#BasicAmbulance">
+                                        Book an Ambulance
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section clearfix bg-red visible-xs">
+                <button class="btn btn-callback">Book an Ambulance</button>
+            </div>
+            <!--
+    <div class="icon faa-float animated">
+<a data-index="4" href="#page4"><img src="/images/ambulance/bls-next.png" alt=""></a>
+</div>
+-->
+        </section>
+        <section id="page4" class="">
+            <div class="content forth">
+                <div class="container clearfix hidden-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red">Advanced Ambulance (ALS)</h2>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h4 class="heading">Advanced Ambulance includes</h4>
+                                    <ul>
+                                        <li><img src="/images/ambulance/als1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als2.png" alt="">
+                                            <p>Paramedic</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als3.png" alt="">
+                                            <p>Stretcher</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als4.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als5.png" alt="">
+                                            <p>Ventilator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa4.png" alt="">
+                                            <p>Monitoring Equipment</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als6.png" alt="">
+                                            <p>Defibrillator</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 text-center mb20">
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Cardiac Patient | Pregnancies | Trauma Care | Patients who need Constant
+                                        Monitoring | Critically Ill Patients</p>
+                                </div>
+                                <div class="col-md-offset-2 col-md-8 text-center mb20">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#AdvanceAmbulance">
+                                        Book an Ambulance
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix visible-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="head">Ambulance Type</h4>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#Basic">Basic</a></li>
+                                <li><a data-toggle="tab" href="#Advance">Advanced</a></li>
+                                <li><a data-toggle="tab" href="#Outstation">Outstation</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="Basic" class="tab-pane fade in active">
+                                    <h4 class="heading">Basic Ambulance includes</h4>
+                                    <ul>
+                                        <li><img src="/images/ambulance/bls1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/bls2.png" alt="">
+                                            <p>Stretcher</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/bls3.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                    </ul>
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Non-emergency Medical Transfer | Inter-facility Transfers</p>
+                                    <div class="navigation">
+                                        <a class="continue"><img src="/images/ambulance/next.png"></a>
+                                    </div>
+                                </div>
+                                <div id="Advance" class="tab-pane fade">
+                                    <h4 class="heading">Advanced Ambulance includes</h4>
+                                    <ul>
+                                        <li><img src="/images/ambulance/als1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als2.png" alt="">
+                                            <p>Paramedic</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als3.png" alt="">
+                                            <p>Stretcher</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als4.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als5.png" alt="">
+                                            <p>Ventilator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa4.png" alt="">
+                                            <p>Monitoring Equipment</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/als6.png" alt="">
+                                            <p>Defibrillator</p>
+                                        </li>
+                                    </ul>
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Cardiac Patient | Pregnancies | Trauma Care | Patients who need Constant
+                                        Monitoring | Critically Ill Patients</p>
+                                    <div class="navigation">
+                                        <a class="back"><img src="/images/ambulance/prev.png"></a>
+                                        <a class="continue"><img src="/images/ambulance/next.png"></a>
+                                    </div>
+                                </div>
+                                <div id="Outstation" class="tab-pane fade">
+                                    <h4 class="heading">We can provide the following as per your needs</h4>
+                                    <ul>
+                                        <li><img src="/images/ambulance/oa1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa2.png" alt="">
+                                            <p>Attendant</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa3.png" alt="">
+                                            <p>Paramedic</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa4.png" alt="">
+                                            <p>Monitoring Equipment</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa5.png" alt="">
+                                            <p>Defibrillator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa6.png" alt="">
+                                            <p>Ventilator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa7.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa8.png" alt="">
+                                            <p>Collapsible Strecher</p>
+                                        </li>
+                                    </ul>
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Transferring patients from one city to another
+                                        <br/>Get a quote from us within 15 minutes</p>
+                                    <div class="navigation">
+                                        <a class="back"><img src="/images/ambulance/prev.png"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- page 5-->
+        <section id="page5" class="section-gray">
+            <div class="content fifth">
+                <div class="container clearfix hidden-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red">Outstation Ambulance</h2>
+                            <p class="text-center">The inclusions can be customized as per your needs. We make sure you
+                                avail quality medical transport for long distance journey.</p>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h4 class="heading">We can provide the following as per your needs</h4>
+                                    <ul>
+                                        <li><img src="/images/ambulance/oa1.png" alt="">
+                                            <p>Driver</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa2.png" alt="">
+                                            <p>Attendant</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa3.png" alt="">
+                                            <p>Paramedic</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa4.png" alt="">
+                                            <p>Monitoring Equipment</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa5.png" alt="">
+                                            <p>Defibrillator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa6.png" alt="">
+                                            <p>Ventilator</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa7.png" alt="">
+                                            <p>Oxygen</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/oa8.png" alt="">
+                                            <p>Collapsible Strecher</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 text-center mb20">
+                                    <h4 class="heading">Ideal For</h4>
+                                    <p>Transferring patients from one city to another</p>
+                                    <p>Get a quote from us within 15 minutes</p>
+                                </div>
+                                <div class="col-md-offset-2 col-md-8 text-center mb20">
+                                    <button class="btn btn-primary" data-toggle="modal"
+                                            data-target="#OutstationAmbulance">Book an Ambulance
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix visible-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading">We also provide Air Ambulance & Ambulance for Events, Corporates &
+                                Residential Communities</h2>
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8 text-center">
+                                    <ul>
+                                        <li><img src="/images/ambulance/aa1.png" alt="">
+                                            <p>Air Ambulance</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa2.png" alt="">
+                                            <p>Corporate</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa3.png" alt="">
+                                            <p>Events</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa4.png" alt="">
+                                            <p>Residential Communities</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section clearfix bg-red visible-xs">
+                <button class="btn btn-callback">TALK TO AN EXPERT</button>
+            </div>
+        </section>
+        <!-- page 6-->
+        <section id="page6">
+            <div class="content six">
+                <div class="container clearfix hidden-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="heading text-red">Events, Corporates & Residential Communities</h2>
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8 text-center">
+                                    <ul>
+                                        <li><img src="/images/ambulance/aa1.png" alt="">
+                                            <p>Air Ambulance</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa2.png" alt="">
+                                            <p>Corporate</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa3.png" alt="">
+                                            <p>Events</p>
+                                        </li>
+                                        <li><img src="/images/ambulance/aa4.png" alt="">
+                                            <p>Residential Communities</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 text-center hidden-xs">
+                                    <h4 class="heading">Confused about your needs?</h4></div>
+                                <div class="col-md-offset-2 col-md-8 text-center mb20 hidden-xs">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModalExpert">
+                                        TALK TO AN EXPERT
+                                    </button>
+                                </div>
+                                <div class="col-md-12 text-center hidden-xs">
+                                    <h4 class="heading2"><span class="text-red">Media Coverage</span></h4>
+                                    <ul class="media">
+                                        <li><img src="/images/ambulance/m1.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m2.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m3.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m4.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m5.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m6.jpg" alt=""></li>
+                                        <li><img src="/images/ambulance/m7.jpg" alt=""></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix visible-xs">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="heading">Media Coverage</h4>
+                            <ul class="media">
+                                <li><img src="/images/ambulance/m1.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m2.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m3.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m4.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m5.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m6.jpg" alt=""></li>
+                                <li><img src="/images/ambulance/m7.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="section-button clearfix bg-red visible-xs" id="view1">
+        <a href="tel:+919111891118" class="btn btn-callback" id="btn_view4" title="Basic">Book an Ambulance</a>
+        <button class="btn btn-callback" id="btn_view5" data-target="#myModalExpert" data-toggle="modal">TALK TO AN
+            EXPERT
+        </button>
+    </div>
+</div>
+<!--    Modal Popup-->
+<!-- Modal Ambulance For Book an Ambulance Basic -->
+<div id="BasicAmbulance" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1"> <form method="POST" action="https://murgency.com/ambulance/type2" accept-charset="UTF-8" class="contactForm clearfix" id="requestcallback" name="frm-booknow-modal" onsubmit="return validateModal();"><input name="_token" type="hidden" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                    <input type="hidden" name="_token" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                        <div class="form-group">
+                            <select name="ambulance-type" id="basic-ambulance-modal" class="form-control" disabled>
+                                <option value="Select Type">Select Type</option>
+                                <option value="Basic Ambulance" selected>Basic Ambulance (BLS)</option>
+                                <option value="Advance Ambulance">Advance Ambulance (ALS)</option>
+                                <option value="Outstation Ambulance">Outstation Ambulance</option>
+                                <option value="Ambulance for Cold Transfer">Ambulance for Cold Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" id="modalname" class="form-control" placeholder="Name(optional)"> <span
+                                    id="errNameModal" class="error"></span></div>
+                        <div class="form-group">
+                            <input type="text" name="phone" id="modalphone" class="form-control"
+                                   placeholder="Mobile No."> <span id="errphoneModal" class="error"></span></div>
+                        <input type="text" class="hidden" name="ambulance-type" id="package" value="Basic Ambulance">
+                        <input type="text" class="hidden" name="url" id="url"
+                               value=" ">
+
+                                                <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" name="btn_book" id="btn_book">Book an Ambulance
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ambulance For Book an Ambulance Advance -->
+<div id="AdvanceAmbulance" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1"> <form method="POST" action="https://murgency.com/ambulance/type2" accept-charset="UTF-8" class="contactForm clearfix" id="requestcallback" name="frm-booknow-modalAdv" onsubmit="return validateModalAdv();"><input name="_token" type="hidden" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                    <!--                           <form action="/ambulanceBookNow" class="form-horizontal contactForm clearfix text-center" method="post" enctype="multipart/form-data" onsubmit="return validateModal();" name="frm-booknow-modal">--><input type="hidden" name="_token" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                        <div class="form-group">
+                            <select name="ambulance-type" id="advance-ambulance-modal" class="form-control" disabled>
+                                <option value="Select Type">Select Type</option>
+                                <option value="Basic Ambulance">Basic Ambulance (BLS)</option>
+                                <option value="Advance Ambulance" selected>Advance Ambulance (ALS)</option>
+                                <option value="Outstation Ambulance">Outstation Ambulance</option>
+                                <option value="Ambulance for Cold Transfer">Ambulance for Cold Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" id="modalnameadv" class="form-control" placeholder="Name(optional)">
+                            <span id="errNameModaladv" class="error"></span></div>
+                        <div class="form-group">
+                            <input type="text" name="phone" id="modalphoneadv" class="form-control"
+                                   placeholder="Mobile No."> <span id="errphoneModaladv" class="error"></span></div>
+                        <input type="text" class="hidden" name="ambulance-type" id="package" value="Advance Ambulance">
+                        <input type="text" class="hidden" name="url" id="url"
+                               value=" ">
+
+                                                <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" name="btn_book" id="btn_book">Book an Ambulance
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ambulance For Book an Ambulance Outstation -->
+<div id="OutstationAmbulance" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1"> <form method="POST" action="https://murgency.com/ambulance/type2" accept-charset="UTF-8" class="contactForm clearfix" id="requestcallback" name="frm-booknow-modalOut" onsubmit="return validateModalOut();"><input name="_token" type="hidden" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                    <!--                           <form action="/ambulanceBookNow" class="form-horizontal contactForm clearfix text-center" method="post" enctype="multipart/form-data" onsubmit="return validateModal();" name="frm-booknow-modal">--><input type="hidden" name="_token" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                        <div class="form-group">
+                            <select name="ambulance-type" id="outstation-ambulance-modal"
+                                    class="form-control ambulance-type" disabled>
+                                <option value="Select Type">Select Type</option>
+                                <option value="Basic Ambulance">Basic Ambulance (BLS)</option>
+                                <option value="Advance Ambulance">Advance Ambulance (ALS)</option>
+                                <option value="Outstation Ambulance" selected>Outstation Ambulance</option>
+                                <option value="Ambulance for Cold Transfer">Ambulance for Cold Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" id="modalnameout" class="form-control" placeholder="Name(optional)">
+                            <span id="errNameModalout" class="error"></span></div>
+                        <div class="form-group">
+                            <input type="text" name="phone" id="modalphoneout" class="form-control"
+                                   placeholder="Mobile No."> <span id="errphoneModalout" class="error"></span></div>
+                        <input type="text" class="hidden" name="ambulance-type" id="package"
+                               value="Outstation Ambulance">
+                        <input type="text" class="hidden" name="url" id="url"
+                               value=" ">
+
+                                                <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" name="btn_book" id="btn_out">Book an Ambulance</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Get instant callback Mobile -->
+<div id="myModalCallbackPhone" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form name="frm-callbackPhone" action="javascript:void(0)" enctype="multipart/form-data">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Phone Number" name="callphone"
+                                       id="callphone"> <span id="errcallbackModalPhone" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btnCallback" type="submit" name="btnCallbackPhone"
+                                        id="btnCallbackPhone"> Get Instant Callback
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Get instant callback fot otp -->
+<div id="myModalCallback" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="otp"> Please enter OTP which has been sent to your mobile number</label>
+                                <!--                                    <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP">-->
+                                <div class="input-group">
+                                    <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP">
+                                    <span class="input-group-btn">
+                                                <button class="btn btn-primary" name="btn_otp"
+                                                        id="btn_otp">Submit OTP</button>
+                                            </span></div>
+                                <span id="errcallbackModalOtp" class="error"></span></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 text-left">
+                                <button class="btn btn-primary btn-link" name="btn_book" id="btn_resend">Resend OTP
+                                </button>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <!--                                    <button class="btn btn-primary" name="btn_otp" id="btn_otp">Submit OTP</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ambulance For TALK TO AN EXPERT -->
+<div id="myModalExpert" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <form action="/talkToExpert" class="contactForm clearfix text-center"
+                              enctype="multipart/form-data" name="frm-modal-Talk" method="POST"
+                              onsubmit="return validateModalTalk();"> <input type="hidden" name="_token" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                            <div class="form-group">
+                                <input type="text" name="name" id="nameTalk" class="form-control" placeholder="Name">
+                                <span id="errNameModalTalk" class="error"></span></div>
+                            <div class="form-group">
+                                <input type="text" name="email" id="emailTalk" class="form-control" placeholder="Email">
+                                <span id="errEmailModalTalk" class="error"></span></div>
+                            <div class="form-group">
+                                <input type="text" name="phone" id="phoneTalk" class="form-control"
+                                       placeholder="Mobile No.">
+                                <span id="errPhoneModalTalk" class="error"></span>
+                                <input type="text" class="hidden" name="ambulance-type" id="package"
+                                       value="Talk To an Expert">
+                                <input type="text" class="hidden" name="url" id="url"
+                                       value=" ">
+
+                                                                <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" name="btn_book" id="btn_book">Talk To an Expert</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ambulance For Call an Ambulance -->
+<div id="BookNowAmbulance" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1"> <form method="POST" action="https://murgency.com/ambulanceBookNow" accept-charset="UTF-8" class="contactForm clearfix" id="requestcallback" name="frm-booknow-modalTemp" onsubmit="return validateBookNowModal();"><input name="_token" type="hidden" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                    <!--                           <form action="/ambulanceBookNow" class="form-horizontal contactForm clearfix text-center" method="post" enctype="multipart/form-data" onsubmit="return validateModal();" name="frm-booknow-modal">--><input type="hidden" name="_token" value="dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep">
+                        <div class="form-group">
+                            <select name="ambulance-type" id="Temp-ambulance-modal" class="form-control">
+                                <option value="Select Type">Select Type</option>
+                                <option value="Basic Ambulance (BLS)" selected>Basic Ambulance (BLS)</option>
+                                <option value="Advance Ambulance (ALS)">Advance Ambulance (ALS)</option>
+                                <option value="Outstation Transfer">Outstation Ambulance</option>
+                                <option value="Cold Transfer">Cold Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" id="modalnameTemp" class="form-control" placeholder="Name(optional)">
+                            <span id="errNameModalTemp" class="error"></span></div>
+                        <div class="form-group">
+                            <input type="text" name="phone" id="modalphoneTemp" class="form-control"
+                                   placeholder="Mobile No."> <span id="errphoneModalTemp" class="error"></span></div>
+                        <div class="form-group">
+                            <input type="text" name="email" id="modalemailTemp" class="form-control"
+                                   placeholder="Email"> <span id="errEmailModalTemp" class="error"></span></div>
+                        <input type="text" class="hidden" name="package" id="package" value="Book an Ambulance">
+                        <input type="text" class="hidden" name="url" id="url"
+                               value=" ">
+
+                                                <input type="hidden" name="utm_source" value="" id="utm_source">
+<input type="hidden" name="utm_campaigntype" value="" id="utm_campaigntype">
+<input type="hidden" name="utm_campaignid" value="" id="utm_campaignid">
+<input type="hidden" name="utm_medium" value="" id="utm_medium">
+<input type="hidden" name="utm_term" value="" id="utm_term">
+<input type="hidden" name="utm_content" value="" id="utm_content">
+<input type="hidden" name="adw_campid" value="" id="adw_campid">
+<input type="hidden" name="adw_adgroupid" value="" id="adw_adgroupid">
+<input type="hidden" name="adw_itemid" value="" id="adw_itemid">
+<input type="hidden" name="adw_targetid" value="" id="adw_targetid">
+<input type="hidden" name="adw_intloc" value="" id="adw_intloc">
+<input type="hidden" name="adw_phyloc" value="" id="adw_phyloc">
+<input type="hidden" name="adw_matchtype" value="" id="adw_matchtype">
+<input type="hidden" name="adw_devicetype" value="" id="adw_devicetype">
+<input type="hidden" name="adw_devicemodel" value="" id="adw_devicemodel">
+<input type="hidden" name="adw_creativeid" value="" id="adw_creativeid">
+<input type="hidden" name="adw_keyword" value="" id="adw_keyword">
+<input type="hidden" name="adw_placement" value="" id="adw_placement">
+<input type="hidden" name="adw_adposition" value="" id="adw_adposition">
+<input type="hidden" name="adw_placementcat" value="" id="adw_placementcat">
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" name="btn_book" id="btn_bookNow">Book an Ambulance
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascript files-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/js/ambulance/jquery-1.11.0.min.js"><\/script>')
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/js/ambulance/jquery.cookie.js"></script>
+<script src="/js/ambulance/jquery.onepage-scroll.js"></script>
+<script src="/js/ambulance/front.js"></script>
+<script type="text/javascript">
+    $("#btn_view5").hide();
+    //Ambulance Tab Selection
+    var activeTab = null;
+    $('a[data-toggle="tab"]').click(function (e) {
+        activeTab = e.target;
+        //alert($(this).text());
+    });
+
+    $('.continue').click(function () {
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    });
+    $('.back').click(function () {
+        $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    });
+
+    //Upper Home Ambulance Select
+    $('.ambu_type').click(function () {
+        var imgtitle = $(this).attr('title');
+        $('#ambu_type').val(imgtitle);
+        var setAmbu = $('#ambu_type').val();
+        $('#packageAmbu').val(imgtitle);
+    });
+</script>
+<!--
+<script type="text/javascript">
+var sourceSwap = function () {
+var $this = $(this);
+var newSource = $this.data('alt-src');
+$this.data('alt-src', $this.attr('src'));
+$this.attr('src', newSource);
+}
+
+$(function () {
+$('.ambu_type img').hover(sourceSwap, sourceSwap);
+});
+</script>
+-->
+<script type="text/javascript">
+    $('#btnCallback').click(function () {
+        var phone = document.forms["frm-callback"]["callphone"].value;
+        if (phone.length != 10) {
+            document.getElementById('errcallbackModal').innerHTML = "Enter 10 digit Phone number";
+            return false;
+        } else if (isNaN(phone)) {
+            document.getElementById('errcallbackModal').innerHTML = "Please Enter only number";
+            return false;
+        } else {
+            document.getElementById('errcallbackModal').innerHTML = "";
+            $('#myModalCallback').modal('toggle');
+            var randomnum = Math.floor(100000 + Math.random() * 900000)
+            randomnum = randomnum.toString().substring(0, 5);
+            var fullNumber = "";
+            var code = '0091';
+            var linkUrl = window.location.search;
+            sessionStorage.removeItem(fullNumber);
+            fullNumber = code + phone;
+            sessionStorage.fullNumber = phone;
+            var source = "desktop";
+            var utm_source = $('#utm_source').val();
+            var utm_campaigntype = $('#utm_campaigntype').val();
+            var utm_campaignid = $('#utm_campaignid').val();
+            var utm_medium = $('#utm_medium').val();
+            var utm_term = $('#utm_term').val();
+            var utm_content = $('#utm_content').val();
+            var adw_campid = $('#adw_campid').val();
+            var adw_adgroupid = $('#adw_adgroupid').val();
+            var adw_itemid = $('#adw_itemid').val();
+            var adw_targetid = $('#adw_targetid').val();
+            var adw_intloc = $('#adw_intloc').val();
+            var adw_phyloc = $('#adw_phyloc').val();
+            var adw_matchtype = $('#adw_matchtype').val();
+            var adw_devicetype = $('#adw_devicetype').val();
+            var adw_devicemodel = $('#adw_devicemodel').val();
+            var adw_creativeid = $('#adw_creativeid').val();
+            var adw_keyword = $('#adw_keyword').val();
+            var adw_placement = $('#adw_placement').val();
+            var adw_adposition = $('#adw_adposition').val();
+            var adw_placementcat = $('#adw_placementcat').val();
+
+            console.log(utm_source);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': 'dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep'
+                }
+            });
+            $.ajax({
+                url: '/ambulance/type2/sendOtp',
+                data: {
+                    'Code': randomnum,
+                    'MobNumber': fullNumber,
+                    'linkUrl': linkUrl,
+                    'source': "desktop",
+                    'utm_source': utm_source,
+                    'utm_campaigntype': utm_campaigntype,
+                    'utm_campaignid': utm_campaignid,
+                    'utm_medium': utm_medium,
+                    'utm_term': utm_term,
+                    'utm_content': utm_content,
+                    'adw_campid':adw_campid ,
+                    'adw_adgroupid': adw_adgroupid,
+                    'adw_itemid': adw_itemid,
+                    'adw_targetid': adw_targetid,
+                    'adw_intloc': adw_intloc,
+                    'adw_phyloc': adw_phyloc,
+                    'adw_matchtype': adw_matchtype,
+                    'adw_devicetype': adw_devicetype,
+                    'adw_devicemodel': adw_devicemodel,
+                    'adw_creativeid': adw_creativeid,
+                    'adw_keyword': adw_keyword,
+                    'adw_placement': adw_placement,
+                    'adw_adposition': adw_adposition,
+                    'adw_placementcat': adw_placementcat,
+                },
+                type: 'POST',
+                datatype: 'JSON',
+                success: function (response) {
+                    if (response.status === true) {
+                    } else {
+                        document.getElementById('errcallbackModalOtp').innerHTML = "Some error occured .. Please try again later";
+                    }
+                },
+                error: function (response) {
+                    document.getElementById('errcallbackModalOtp').innerHTML = response.message;
+                }
+            });
+        }
+    });
+    $('#btnCallbackPhone').click(function () {
+        var phone = document.forms["frm-callbackPhone"]["callphone"].value;
+        if (phone.length != 10) {
+            document.getElementById('errcallbackModalPhone').innerHTML = "Enter 10 digit Phone number";
+            return false;
+        } else if (isNaN(phone)) {
+            document.getElementById('errcallbackModalPhone').innerHTML = "Please Enter only number";
+            return false;
+        } else {
+            document.getElementById('errcallbackModalPhone').innerHTML = "";
+            $('#myModalCallback').modal('toggle');
+            $("#myModalCallbackPhone").hide();
+            var randomnum = Math.floor(100000 + Math.random() * 900000)
+            randomnum = randomnum.toString().substring(0, 5);
+            var fullNumber = "";
+            var code = '0091';
+            var linkUrl = window.location.search;
+            sessionStorage.removeItem(fullNumber);
+            fullNumber = code + phone;
+            sessionStorage.fullNumber = phone;
+            var source = "mobile";
+            var utm_source = $('#utm_source').val();
+            var utm_campaigntype = $('#utm_campaigntype').val();
+            var utm_campaignid = $('#utm_campaignid').val();
+            var utm_medium = $('#utm_medium').val();
+            var utm_term = $('#utm_term').val();
+            var utm_content = $('#utm_content').val();
+            var adw_campid = $('#adw_campid').val();
+            var adw_adgroupid = $('#adw_adgroupid').val();
+            var adw_itemid = $('#adw_itemid').val();
+            var adw_targetid = $('#adw_targetid').val();
+            var adw_intloc = $('#adw_intloc').val();
+            var adw_phyloc = $('#adw_phyloc').val();
+            var adw_matchtype = $('#adw_matchtype').val();
+            var adw_devicetype = $('#adw_devicetype').val();
+            var adw_devicemodel = $('#adw_devicemodel').val();
+            var adw_creativeid = $('#adw_creativeid').val();
+            var adw_keyword = $('#adw_keyword').val();
+            var adw_placement = $('#adw_placement').val();
+            var adw_adposition = $('#adw_adposition').val();
+            var adw_placementcat = $('#adw_placementcat').val();
+
+            console.log(utm_source);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': 'dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep'
+                }
+            });
+            $.ajax({
+                url: '/ambulance/type2/sendOtp',
+                data: {
+                    'Code': randomnum,
+                    'MobNumber': fullNumber,
+                    'linkUrl': linkUrl,
+                    'utm_source': utm_source,
+                    'utm_campaigntype': utm_campaigntype,
+                    'utm_campaignid': utm_campaignid,
+                    'utm_medium': utm_medium,
+                    'utm_term': utm_term,
+                    'utm_content': utm_content,
+                    'adw_campid':adw_campid ,
+                    'adw_adgroupid': adw_adgroupid,
+                    'adw_itemid': adw_itemid,
+                    'adw_targetid': adw_targetid,
+                    'adw_intloc': adw_intloc,
+                    'adw_phyloc': adw_phyloc,
+                    'adw_matchtype': adw_matchtype,
+                    'adw_devicetype': adw_devicetype,
+                    'adw_devicemodel': adw_devicemodel,
+                    'adw_creativeid': adw_creativeid,
+                    'adw_keyword': adw_keyword,
+                    'adw_placement': adw_placement,
+                    'adw_adposition': adw_adposition,
+                    'adw_placementcat': adw_placementcat,
+
+                },
+                type: 'POST',
+                datatype: 'JSON',
+                success: function (response) {
+                    if (response.status === true) {
+                    } else {
+                        document.getElementById('errcallbackModalOtp').innerHTML = "Some error occured .. Please try again later";
+                    }
+                },
+                error: function (response) {
+                    document.getElementById('errcallbackModalOtp').innerHTML = response.message;
+                }
+            });
+        }
+    });
+    $('#btn_otp').click(function () {
+        document.getElementById('errcallbackModalOtp').innerHTML = "";
+        var otp = document.getElementById('otp').value;
+        var phone = document.getElementById('callphone').value;
+
+        if (otp.length < 1) {
+            document.getElementById('errcallbackModalOtp').innerHTML = "Please enter OTP";
+            return false;
+        } else {
+            document.getElementById('errcallbackModalOtp').innerHTML = "";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': 'dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep'
+                }
+            });
+            $.ajax({
+                url: '/ambulance/type2/verifyOtp',
+                data: {
+                    'Code': otp,
+                    'phone': phone
+                },
+                type: 'POST',
+                datatype: 'JSON',
+                success: function (response) {
+                    if (response.status === true) {
+                        var api = "https://api-voice.solutionsinfini.com/v1/?api_key=A15236a7fb97bd30bcbc7df29fea40332&method=dial.click2call&output=xml&caller=2233024971&receiver=" + sessionStorage.fullNumber;
+                        //                        Calling the API
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.open("GET", api);
+                        xhttp.send();
+
+                        window.setTimeout(function () {
+                            window.location = 'https://murgency.com/medical-request/ambulance/type2/request-confirmed';
+                        }, 1000);
+
+
+                    } else {
+                        $('#otp').val("");
+                        document.getElementById('errcallbackModalOtp').innerHTML = " Please enter correct OTP";
+                        return false;
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response);
+                    document.getElementById('errcallbackModalOtp').innerHTML = response.message;
+                }
+            });
+        }
+    });
+    $('#btn_resend').click(function () {
+        var phone = document.forms["frm-callback"]["callphone"].value;
+        document.getElementById('errcallbackModalOtp').innerHTML = ""
+        document.getElementById('errcallbackModal').innerHTML = "";
+        var randomnum = Math.floor(100000 + Math.random() * 900000)
+        randomnum = randomnum.toString().substring(0, 5);
+        var fullNumber = "";
+        var code = '0091';
+        sessionStorage.removeItem(fullNumber);
+        var fullNumber = code + phone;
+        sessionStorage.fullNumber = phone;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': 'dMvas3r6yRAAzririLFSC1IeWuBvz10XFGF144Ep'
+            }
+        });
+        $.ajax({
+            url: '/ambulance/type2/sendOtp',
+            data: {
+                'Code': randomnum,
+                'MobNumber': fullNumber
+            },
+            type: 'POST',
+            datatype: 'JSON',
+            success: function (response) {
+                if (response.status === true) {
+                    return false;
+                } else {
+                    document.getElementById('errcallbackModalOtp').innerHTML = " Some error occured .. Please try again later";
+                }
+            },
+            error: function (response) {
+                document.getElementById('errcallbackModalOtp').innerHTML = response.message;
+            }
+        });
+    });
+    $('.contactForm').submit(function () {
+        var ambulanceType = "";
+        var selectedItem = $(this).find('option:selected').first().text();
+        sessionStorage.removeItem(ambulanceType);
+        sessionStorage.ambulanceType = selectedItem;
+    });
+    $('.ambu_type').click(function () {
+
+    });
+    $('.PhoneAmbu').click(function () {
+
+    });
+
+//    function getUrlVars()
+//    {
+//        var vars = [], hash;
+//        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+//        for(var i = 0; i < hashes.length; i++)
+//        {
+//            hash = hashes[i].split('=');
+//            vars.push(hash[0]);
+//            vars[hash[0]] = hash[1];
+//        }
+//        return vars;
+//    }
+
+</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"5725f2ec6c","applicationID":"43991190","transactionName":"YFNXZ0cEWkcAUBEMDVkZdFBBDFtaTl4AAQtUV1keRwBFQQRAEUoDWlRAX1QLV1FORxwVBwU=","queueTime":0,"applicationTime":16,"atts":"TBRUEQ8eSUk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
+</html>
