@@ -33,12 +33,13 @@
 	font-size: 1.3em;
 	}
 	    #sidebar{
-	position:absolute;
-	width:300px;
-	height:100vh;
-	text-align:center;
-	background-color:#bbc0c9;
-	padding:10px 10px 40px 10px;
+	        position:absolute;
+	        width:300px;
+            top:0;
+	        height:100vh;
+	        text-align:center;
+	        background-color:#bbc0c9;
+	        padding:10px 10px 40px 10px;
 	}
 	    .details{
 	padding:5px;
@@ -62,9 +63,7 @@
   <body>
 <!-- Map Div    -->
       <div id="map"></div>
-      
-
-<section id="sidebar">
+      <section id="sidebar">
 <div><header>Hospitals</header></div>
 <!--<div class="details">
 	<p>Data.....Lorem ipsum</p>
@@ -92,11 +91,8 @@
 	<p>Data.....Lorem ipsum</p>
 </div>-->
 </section>
-
-
-    <div id="map"></div>
     <!--  Map API integration    -->
-      <script src="https://maps.googleapis.com/maps/api/jskey=AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY" type="text/javascript"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY" type="text/javascript"></script>
 <!--  End of Map API Integration    -->
      
       /* Always set the map height explicitly to define the size of the div

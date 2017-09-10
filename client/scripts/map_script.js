@@ -65,7 +65,7 @@ function initMap()
 		//	data.longitude = pos.lng;
 
             		infoWindow.setPosition(pos);
-            		infoWindow.setContent('Location has found.');
+//            		infoWindow.setContent('Location has found.');
             		infoWindow.open(map);
             		map.setCenter(pos);
 			//addMarker(data);
