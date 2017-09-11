@@ -43,7 +43,7 @@ function initMap()
 		zoomControl: true,
 		center: {lat: -34.397, lng: 150.644},
 		styles: styles,
-        	zoom: 11
+        	zoom: 14
     	}
         infoWindow = new google.maps.InfoWindow;
 
@@ -59,18 +59,19 @@ function initMap()
               			lng: position.coords.longitude
 				//lng: data.longitude
             		};
-			console.log(pos);
-			
-		//	data.latitude = pos.lat;
-		//	data.longitude = pos.lng;
-
-            		infoWindow.setPosition(pos);
-//            		infoWindow.setContent('Location has found.');
+			  
             		infoWindow.open(map);
             		map.setCenter(pos);
-			//addMarker(data);
-			addMarker(pos);
-			//addMarker(data);
+			
+                    var marker = new MarkerWithLabel({
+                    //icon:icon,// "http://maps.google.com/mapfiles/kml/pal2/icon31.png",   
+                    position: new google.maps.LatLng(pos.lat, pos.lng),
+                    map: map,
+                    labelContent: "your location" ,
+                    labelAnchor: new google.maps.Point(30, 0),
+                    labelClass: "tag",
+                  });
+
           	}, function() {
             		handleLocationError(true, infoWindow, map.getCenter());
           	});
@@ -80,21 +81,7 @@ function initMap()
           	// Browser doesn't support Geolocation
         	handleLocationError(false, infoWindow, map.getCenter());
         }
-    var obj = {
-            NE:{
-            lat: -34.397,
-            lng: 150.644
-            },
-            SW:{
-            lat:37.4236,
-            lng:-122.1619
-            }
-        }
-        var objString = JSON.stringify(obj);
-       $.post('http://localhost:4000', obj)
-        .done(function(data){
-            console.log(data[1].longitude+" "+data[1].latitude);
-        });
+
 
  	// get DOM node in which map will be instantiated
    	var canvas = $("#map").get(0);
@@ -133,7 +120,7 @@ function addMarker(place)
       var labelIndex = 0;
 	var myLatLng = {lat: place.lat, lng: place.lng};
 	console.log(myLatLng);
-		
+*/		
 var icon = {
     url: "../assets/images/hos.png", // url
     scaledSize: new google.maps.Size(30, 30), // scaled size
@@ -141,7 +128,7 @@ var icon = {
     anchor: new google.maps.Point(15, 30) // anchor
 };
 
-	 var marker = new google.maps.Marker({
+/*	 var marker = new google.maps.Marker({
 	          position: myLatLng,
 			//icon: icon,
 	          map: map,
@@ -151,13 +138,32 @@ var icon = {
 	
 */
     var marker = new MarkerWithLabel({
-	//icon: "http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
-	position: new google.maps.LatLng(place.lat, place.lng),
+	icon: icon, //"http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
+	position: new google.maps.LatLng((place.latitude).substr(0,7), (place.longitude).substr(0,7)),
 	map: map,
 	labelContent: place.hospiname ,
 	labelAnchor: new google.maps.Point(30, 0),
 	labelClass: "tag",
     });
+
+    //  on clicking marker
+   google.maps.event.addListener(marker, "click", function() {
+    //showInfo(marker);
+    
+
+        
+    // making unordred list using function htmlInfo Window 
+    var ul = htmlInfoWindow(place);
+        
+    // show news
+    showInfomarker(marker, ul);
+        
+        
+    
+    });
+
+
+
    showInfo(place);
     
    // google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
@@ -165,7 +171,54 @@ var icon = {
     
 }
 
+function showInfomarker(marker, content)
+{
+    // start div
+    var div = "<div>";
+    if (typeof(content) === "undefined")
+    {
+        // http://www.ajaxload.info/
+        div += "<img alt='loading' src='../assets/images/ajax-loader.gif'/>";
+    }
+    else
+    {
+        div += content;
+    }
 
+    // end div
+    div += "</div>";
+
+    // set info window's content
+    infoWindow.setContent(div);
+
+    // open info window (if not already open)
+    infoWindow.open(map, marker);
+}
+
+function htmlInfoWindow(place)
+{
+    // start a unordered list
+    var ul = "<ul>";
+    // create a template
+   // var temp = _.template("<li> <a href = '<%- link %>' target= '_blank'><%- title %></a></li>");
+    
+    // inserting link and title into template
+   /* for(var i=0, n = data.length;i<n;i++)
+    {
+        ul+=temp({
+            link:data[i].link,
+            title:data[i].title
+            
+        });
+    }*/
+    ul+="<li>" + place.hospiname + "</li>";
+    ul+="<li>" + place.address + "</li>";
+    ul+="<li>" + place.tel + "</li>";
+
+    // ending unordered list
+    ul += "</ul>";
+    return ul;
+}
 
 
 /**
@@ -239,14 +292,39 @@ function update()
  //   $.getJSON("update.js", parameters)
    // .done(function(data, textStatus, jqXHR)*/
 
-/*
-        // remove old markers from map
-        removeMarkers();	
-	// remove div elements
-	//removediv();
+     // remove old markers from map
+       // removeMarkers();  
+    // remove div elements
+    
+
+        var obj = {
+            NE:{
+            lat: ne.lat(),
+            lng: ne.lng()
+            },
+            SW:{
+            lat: sw.lat(),
+            lng: sw.lng()
+            }
+        }
+        console.log(obj.NE);
+        console.log(obj.SW);
+        var objString = JSON.stringify(obj);
+       $.post('http://localhost:4000', obj)
+        .done(function(data){
+            console.log(Object.keys(data).length);
+            for (var i = 0; i < Object.keys(data).length; i++)
+            {
+                addMarker(data[i]);
+                console.log(data[i].longitude+" "+data[i].latitude);
+            }
+        //    console.log(data[1].longitude+" "+data[1].latitude);
+        });
+       // removediv();
+       
 
 	
-        // add new markers to map
+       /*  add new markers to map
         for (var i = 0; i < 3; i++)
         {
             addMarker(data);
@@ -265,8 +343,8 @@ function showInfo(place)
 var div = "";//="<section id='sidebar'> ";
 div+= "<div id='pj' class='details'>";
 div+= "<p>"+ place.hospiname +"</p>";
-div+= "<p>"+ place.lat +"</p>";
-div+= "<p>"+ place.lng + "</p>" ;
+div+= "<p>"+ (place.latitude) +"</p>";
+div+= "<p>"+ place.longitude + "</p>" ;
 
 div+="</div>";
 //div+="</section>";

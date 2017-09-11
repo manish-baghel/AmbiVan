@@ -13,9 +13,10 @@ function home(req, res){
 
 function homePost(req, res){
     var data = req.body;
+
     var query = makeQuery(data);
     var out = database.getDataFromTable(
-        query,
+         query,
         function(err,result){
             if(err) throw err;
             result = parseIt(result);
@@ -29,8 +30,19 @@ function makeQuery(data){
     var ne_lat = data.NE.lat;
     var sw_lng = data.SW.lng;
     var ne_lng = data.NE.lng;
-    console.log(sw_lat+ne_lat);
-    var query = "SELECT * FROM ambivan";
+    console.log(sw_lng+ne_lng);
+    var query ;//= "SELECT * FROM ambivan";
+    if (sw_lng <= ne_lng)
+    {
+        // doesn't cross the antimeridian
+        query = 'SELECT * FROM places WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude AND longitude <= '+ne_lng+')';
+    }
+    else
+    {
+        // crosses the antimeridian
+        query = 'SELECT * FROM places WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude OR longitude <= '+ne_lng+')';
+    }
+    console.log(query);
     return query;
 }
 function parseIt(rawData){
