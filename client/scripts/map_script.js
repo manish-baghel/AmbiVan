@@ -217,10 +217,7 @@ function htmlInfoWindow(place)
     ul+="<li>" + place.hospiname + "</li>";
     ul+="<li>" + place.latitude + "</li>";
     ul+="<li>" + place.longitude + "</li>";
-<<<<<<< HEAD
-=======
     ul+="<li>" + place.distance + "</li>";
->>>>>>> 9f9740afac0f08faab4a776fdfe0f2b7b8f3a3df
 
     // ending unordered list
     ul += "</ul>";
