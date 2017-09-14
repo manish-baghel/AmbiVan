@@ -3,105 +3,22 @@
   <head>
     <title>Geolocation</title>
     <%include partials/_header.ejs%>
-    <style>
-        *{
-	    margin:0;
-	    padding:0;
-	    box-sizing:border-box;
-	    }
-        #map{
-            height:100vh;
-            left:300px;
-            width: 84.3%;
-        }
-        .tag{
-/*	padding:2px 5px;*/
-	background:#fff;/*
-	font-size:14px;
-	text-transform:capitalize;
-	color:dimgray;
-*/
-	border:0.2px solid black;
-	margin: 0;
-	text-align: center;
-/*	display: block;
-	position: relative;
-	left:-20px;
-*/	color: #451C1C;
-	font-family: source-sans-pro;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 1.3em;
-	}
-	    #sidebar{
-	        position:absolute;
-	        width:300px;
-            top:0;
-	        height:100vh;
-	        text-align:center;
-	        background-color:#bbc0c9;
-	        padding:10px 10px 40px 10px;
-	}
-	    .details{
-	padding:5px;
-	width:280px;
-	background-color:white;
-	font-family: sans-serif;
-	font-size:18px;
-	height:120px;
-	color:grey;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	margin-bottom:20px;
-	}
-	    header{
-	color:green;
-	font-size:1.4em;
-	margin-bottom:10px;
-	}
-    </style>
-    <link href="../styles/styles.css" rel="stylesheet"/>
   </head>
   <body>
 <!-- Map Div    -->
-      <div id="map"></div>
       <section id="sidebar">
-<div><header>Hospitals</header></div>
-<!--<div class="details">
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-</div>
-<div class="details">
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-</div>
-<div class="details">
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-</div>
-<div class="details">
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-</div>
-<div class="details">
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-	<p>Data.....Lorem ipsum</p>
-</div>-->
-</section>
-    <!--  Map API integration    -->
+          <header>Hospitals</header>
+      </section>
+      <div id="map"></div>
+
+
+
+<!--  Map API integration    -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY" type="text/javascript"></script>
 <!--  End of Map API Integration    -->
-     
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      /* Optional: Makes the sample page fill the window. */
 	  <script src="../scripts/markerwithlabel_packed.js"></script>
-        <script> //initMap();
+      <script> //initMap();
             google.maps.event.addDomListener(window, 'load', initMap);
-       </script>
+      </script>
   </body>
 </html>

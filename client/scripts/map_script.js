@@ -239,6 +239,7 @@ function configure()
     // update UI after zoom level changes
     google.maps.event.addListener(map, "zoom_changed", function() {
 	//removediv();
+        removeMarkers();
         update();
     });
 
@@ -380,13 +381,14 @@ function showInfo(place)
 {
 var div = "";//="<section id='sidebar'> ";
 div+= "<div id='pj' class='details'>";
-div+="<ul>"
-div+= "<li>"+ place.hospiname +"</li>";
-div+= "<li>"+ place.phone +"</li>";
-div+= "<li><a href =http://"+ place.website + ">"+place.website+"</a></li>" ;
-div+= "<li>"+ place.distance + " KM</li>";
 
-div+="</ul></div>";
+div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
+div+= "<p>"+ place.phone +"</p>";
+div+= "<p><a href =http://"+ place.website + ">"+place.website+"</a></p>" ;
+div+= "<p>"+ place.distance + " KM</p>";
+
+
+div+="</div>";
 //div+="</section>";
 document.getElementById('sidebar').innerHTML+=div;
 
@@ -443,6 +445,7 @@ function getalldata()
             
         });
 }
+
 
 function getDistance1(origin1,destination,i,data){
     var service = new google.maps.DistanceMatrixService();
