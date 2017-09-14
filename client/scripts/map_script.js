@@ -14,11 +14,14 @@ var Markers = [];
 // info window
 var infoWindow ;
 
+// number of marker to be placed
+var num;
 
-var data = { id:"0", hospiname:"my hospiname",lng:77.3759,lat:28.5120};
 var pos;
+
 function initMap()
 {
+    
 	var styles = [
         // hide Google's labels
         {
@@ -59,7 +62,7 @@ function initMap()
               			lng: position.coords.longitude
 				//lng: data.longitude
             		};
-			  
+			     getalldata();
             		//infoWindow.open(map);
             		map.setCenter(pos);
 			
@@ -316,47 +319,19 @@ function update()
         .done(function(data){
             console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
-            
+            num = Object.keys(data).length;
             for (var i = 0; i < Object.keys(data).length; i++)
             {
                
-                console.log(data[i]);
-                var po = data[i];
+             //   console.log(data[i]);
+                var po = data;
                 var origin1 = new google.maps.LatLng(pos.lat,pos.lng);
                 var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                var service = new google.maps.DistanceMatrixService();
-                service.getDistanceMatrix({
-                    origins: [origin1],
-                    destinations: [destination],
-                    travelMode: google.maps.TravelMode.DRIVING,
-                    unitSystem: google.maps.UnitSystem.METRIC,
-                    avoidHighways: false,
-                    avoidTolls: false
-                }, function (response, status) 
-                {
-                    if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-                    var distance = response.rows[0].elements[0].distance.text;
-                    var duration = response.rows[0].elements[0].duration.text;
-                        // = distance;
-                        // console.log(distance);
-                    distance = distance.substring(0,distance.length-3);
-                    //console.log(distance);
-                    distance = parseFloat(distance);
-                   // console.log(distance);
-                    po.distance = distance;
-                    console.log(po.distance);
-                    }
-                    else
-                    {
-                        alert("Unable to find the distance via road.");
-                    }
-                }
-                );
                 
-                console.log(data[i].distance);
 
-                //addMarker(data[i]);
-                //console.log(data[i].longitude+" "+data[i].latitude);
+                getDistance(origin1,destination,i,data);
+                
+
             }
             
             for(var i =0;i < Object.keys(data).length; i++)
@@ -365,13 +340,13 @@ function update()
             // data[i].distance = arry[i];
               //  console.log(data[i].distance);
             }
-            data.sort(function(a,b){
+           /* data.sort(function(a,b){
                 return a.distance-b.distance; 
             });
             for (var i = 0; i < Object.keys(data).length; i++)
             {
                 addMarker(data[i]);   
-            }
+            }*/
             
         //    console.log(data[1].longitude+" "+data[1].latitude);
         });
@@ -392,6 +367,59 @@ function update()
      });*/
 	//removediv();
 }
+function callba(response,status,i,data)
+{
+     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+        var distance = response.rows[0].elements[0].distance.text;
+        var duration = response.rows[0].elements[0].duration.text;
+            // = distance;
+            // console.log(distance);
+        distance = distance.substring(0,distance.length-3);
+        //console.log(distance);
+        distance = parseFloat(distance);
+        console.log(i+"yo");
+        data[i].distance = distance;
+        //addMarker(data[i]);
+       // console.log(po.distance);
+        //data[i].distance = distance;
+        //console.log(po.distance);
+        }
+        else
+        {
+             alert("Unable to find the distance via road.");
+        }
+        if(i == num-1)
+        {
+            data.sort(function(a,b){
+                return a.distance-b.distance; 
+            });
+            for(var j=0;j<=i;j++)
+            {
+                addMarker(data[j]);
+            }
+        }
+          
+
+    
+}
+function getDistance(origin1,destination,i,data){
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origin1],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, function (response, status) 
+    {
+        callba(response,status,i,data);
+    }
+    );
+    
+}
+
+
 
 function showInfo(place)
 {
@@ -417,4 +445,80 @@ while(elem!=null){
  elem = document.getElementById('pj');
 }
 
+}
+
+
+function getalldata()
+{
+
+     var obj = {
+            NE:{
+            lat: 28.757072588741632,
+            lng: 77.7459763295899
+            },
+            SW:{
+            lat: 28.362046667250237,
+            lng: 76.67137610986333
+            }
+        }
+        console.log(obj.NE);
+        console.log(obj.SW);
+        var arry = [];
+        var objString = JSON.stringify(obj);
+       $.post('http://localhost:4000', obj)
+        .done(function(data){
+            console.log(Object.keys(data).length);
+            //var p = Object.keys(data).length;
+            num = Object.keys(data).length;
+            for (var i = 0; i < Object.keys(data).length; i++)
+            {
+               
+             //   console.log(data[i]);
+                var po = data;
+                var origin1 = new google.maps.LatLng(pos.lat,pos.lng);
+                var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);
+                
+
+                getDistance1(origin1,destination,i,data);
+                
+
+            }
+            
+            
+        });
+}
+
+function getDistance1(origin1,destination,i,data){
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origin1],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, function (response, status) 
+    {
+        callba1(response,status,i,data);
+    }
+    );
+    
+}
+function callba1(response,status,i,data)
+{
+     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+        var distance = response.rows[0].elements[0].distance.text;
+        var duration = response.rows[0].elements[0].duration.text;
+         
+        distance = distance.substring(0,distance.length-3);
+        //console.log(distance);
+        distance = parseFloat(distance);
+        console.log(i+"yo");
+        data[i].distance = distance;
+       
+        }
+        else
+        {
+             alert("Unable to find the distance via road.");
+        }   
 }
