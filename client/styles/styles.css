@@ -189,7 +189,7 @@ body,
     left: 0;
     z-index:1;
     height: 100vh;
-    overflow: scroll;
+    overflow:auto;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -207,6 +207,7 @@ body,
     background-color: white;
     font-family: 'Myriad-Pro', sans-serif;
     font-size: 1em;
+    border-bottom: 1px grey solid;
     min-height: 50px;
     color: #c82328;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
