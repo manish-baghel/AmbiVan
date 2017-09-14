@@ -426,10 +426,11 @@ function showInfo(place)
 {
 var div = "";//="<section id='sidebar'> ";
 div+= "<div id='pj' class='details'>";
-div+= "<p>"+ place.hospiname +"</p>";
+div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
 div+= "<p>"+ (place.latitude) +"</p>";
 div+= "<p>"+ place.longitude + "</p>" ;
 div+= "<p>"+ place.distance + "</p>";
+    
 
 div+="</div>";
 //div+="</section>";

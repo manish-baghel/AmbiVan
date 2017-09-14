@@ -9,6 +9,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+.clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+@font-face {
+    font-family: Myriad-Pro;
+    src: url('../assets/fonts/Myriad-Pro.ttf');
+}
+
+
 html,
 body,
 #map-canvas,
@@ -25,6 +36,7 @@ body,
     /* no padding within these elements */
     
     padding: 0;
+    font-family: 'Myriad-Pro', sans-serif;
 }
 /* align form to right of pan control */
 
@@ -152,49 +164,52 @@ body,
     border-radius: 8px;
 }
 
-.clearfix{
-    display: table
-}
-
-
 #map {
     height: 100vh;
-    float: left;
-    width: 70%;
+    width: 100%;
 }
 .tag {
     background: #fff;
     border: 0.2px solid black;
     margin: 0;
+    padding: 2px;
     text-align: center;
+    text-transform: capitalize;
     color: #451C1C;
-    font-family: source-sans-pro;
-    font-style: normal;
+    font-family: 'Myriad-Pro', sans-serif;
     font-weight: 400;
     font-size: 1.3em;
 }
 #sidebar {
-    float: left;
+    position: absolute;
     width: 300px;
-    top: 0;
+    left: 0;
+    z-index:1;
     height: 100vh;
-    text-align: center;
-    background-color: #bbc0c9;
-    padding: 10px 10px 40px 10px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+#sidebar header{
+    color: #fff;
+    background-color: #c82328;
+    font-size: 1.6em;
+    height: 100px;
+    font-weight: 400;
+    padding: 20px;
 }
 .details {
-    padding: 5px;
-    width: 280px;
+    padding: 5px 5px 5px 20px;
+    width: 300px;
     background-color: white;
-    font-family: sans-serif;
-    font-size: 18px;
-    height: 120px;
+    font-family: 'Myriad-Pro', sans-serif;
+    font-size: 1em;
+    min-height: 50px;
     color: grey;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin-bottom: 20px;
 }
-header {
-    color: green;
-    font-size: 1.4em;
-    margin-bottom: 10px;
+.details .hospiname{
+    color: #000;
+    font-size: 1.2em;
+    text-transform: capitalize;
 }
