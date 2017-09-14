@@ -62,7 +62,7 @@ function initMap()
               			lng: position.coords.longitude
 				//lng: data.longitude
             		};
-			     getalldata();
+                    getalldata();
             		//infoWindow.open(map);
             		map.setCenter(pos);
 			
@@ -215,9 +215,9 @@ function htmlInfoWindow(place)
         });
     }*/
     ul+="<li>" + place.hospiname + "</li>";
-    ul+="<li>" + place.latitude + "</li>";
-    ul+="<li>" + place.longitude + "</li>";
-    ul+="<li>" + place.distance + "</li>";
+    ul+="<li>" + place.phone + "</li>";
+    ul+="<li>" + place.address + "</li>";
+    ul+="<li>" + place.distance + " KM</li>";
 
     // ending unordered list
     ul += "</ul>";
@@ -287,16 +287,6 @@ function update()
     var ne = bounds.getNorthEast();
     var sw = bounds.getSouthWest();
 
-    // get places within bounds (asynchronously)
-  /*  var parameters = {
-        ne: ne.lat() + "," + ne.lng(),
-        q: $("#q").val(),
-        sw: sw.lat() + "," + sw.lng()
-    };
- //   $.getJSON("update.js", parameters)
-   // .done(function(data, textStatus, jqXHR)*/
-
-     // remove old markers from map
         removeMarkers();  
     // remove div elements
     
@@ -334,74 +324,39 @@ function update()
 
             }
             
-            for(var i =0;i < Object.keys(data).length; i++)
-            {
-               // console.log(arry[i]);
-            // data[i].distance = arry[i];
-              //  console.log(data[i].distance);
-            }
-           /* data.sort(function(a,b){
-                return a.distance-b.distance; 
-            });
-            for (var i = 0; i < Object.keys(data).length; i++)
-            {
-                addMarker(data[i]);   
-            }*/
-            
-        //    console.log(data[1].longitude+" "+data[1].latitude);
         });
-       // removediv();
-
-
-	
-       /*  add new markers to map
-        for (var i = 0; i < 3; i++)
-        {
-            addMarker(data);
-        }
-     
-     /*.fail(function(jqXHR, textStatus, errorThrown) {
-
-         // log error to browser's console
-         console.log(errorThrown.toString());
-     });*/
-	//removediv();
 }
 function callba(response,status,i,data)
 {
-     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-        var distance = response.rows[0].elements[0].distance.text;
-        var duration = response.rows[0].elements[0].duration.text;
-            // = distance;
-            // console.log(distance);
-        distance = distance.substring(0,distance.length-3);
-        //console.log(distance);
-        distance = parseFloat(distance);
-        console.log(i+"yo");
-        data[i].distance = distance;
-        //addMarker(data[i]);
-       // console.log(po.distance);
-        //data[i].distance = distance;
-        //console.log(po.distance);
-        }
-        else
+    if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+    var distance = response.rows[0].elements[0].distance.text;
+    var duration = response.rows[0].elements[0].duration.text;
+        // = distance;
+        // console.log(distance);
+    distance = distance.substring(0,distance.length-3);
+    //console.log(distance);
+    distance = parseFloat(distance);
+    console.log(i+"yo");
+    data[i].distance = distance;
+ 
+    }
+    else
+    {
+         alert("Unable to find the distance via road.");
+    }
+    removeMarkers();
+    if(i == num-1)
+    {
+        data.sort(function(a,b){
+            return a.distance-b.distance; 
+        });
+        for(var j=0;j<=i;j++)
         {
-             alert("Unable to find the distance via road.");
+            addMarker(data[j]);
         }
-        if(i == num-1)
-        {
-            data.sort(function(a,b){
-                return a.distance-b.distance; 
-            });
-            for(var j=0;j<=i;j++)
-            {
-                addMarker(data[j]);
-            }
-        }
-          
-
-    
+    }
 }
+
 function getDistance(origin1,destination,i,data){
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
@@ -425,12 +380,13 @@ function showInfo(place)
 {
 var div = "";//="<section id='sidebar'> ";
 div+= "<div id='pj' class='details'>";
-div+= "<p>"+ place.hospiname +"</p>";
-div+= "<p>"+ (place.latitude) +"</p>";
-div+= "<p>"+ place.longitude + "</p>" ;
-div+= "<p>"+ place.distance + "</p>";
+div+="<ul>"
+div+= "<li>"+ place.hospiname +"</li>";
+div+= "<li>"+ place.phone +"</li>";
+div+= "<li><a href =http://"+ place.website + ">"+place.website+"</a></li>" ;
+div+= "<li>"+ place.distance + " KM</li>";
 
-div+="</div>";
+div+="</ul></div>";
 //div+="</section>";
 document.getElementById('sidebar').innerHTML+=div;
 
