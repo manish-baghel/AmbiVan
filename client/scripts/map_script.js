@@ -254,7 +254,7 @@ function configure()
     document.addEventListener("contextmenu", function(event) {
         event.returnValue = true; 
         event.stopPropagation && event.stopPropagation(); 
-        event.cancelBubble && event.cancelBubble();
+        event.cancelBubble;
     }, true);
 
     // update UI
