@@ -18,7 +18,10 @@
     font-family: Myriad-Pro;
     src: url('../assets/fonts/Myriad-Pro.ttf');
 }
-
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
 html,
 body,
@@ -182,10 +185,11 @@ body,
 }
 #sidebar {
     position: absolute;
-    width: 300px;
+    width: 350px;
     left: 0;
     z-index:1;
     height: 100vh;
+    overflow: scroll;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -199,17 +203,26 @@ body,
 }
 .details {
     padding: 5px 5px 5px 20px;
-    width: 300px;
+    width: 350px;
     background-color: white;
     font-family: 'Myriad-Pro', sans-serif;
     font-size: 1em;
     min-height: 50px;
-    color: grey;
+    color: #c82328;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin-bottom: 20px;
 }
 .details .hospiname{
     color: #000;
     font-size: 1.2em;
     text-transform: capitalize;
+}
+.details .phone:before {
+  content: "\260e  ";
+}
+.details .website{
+    color: gray;
+}
+.details .phone{
+    color: #c82328;
+    font-size: 1.1em;
 }

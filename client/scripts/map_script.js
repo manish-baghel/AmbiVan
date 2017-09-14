@@ -383,9 +383,9 @@ var div = "";//="<section id='sidebar'> ";
 div+= "<div id='pj' class='details'>";
 
 div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
-div+= "<p>"+ place.phone +"</p>";
-div+= "<p><a href =http://"+ place.website + ">"+place.website+"</a></p>" ;
-div+= "<p>"+ place.distance + " KM</p>";
+div+= "<a class='phone' href=tel:"+place.phone+">"+place.phone+"</a>";
+div+= "<p><a class='website' href =http://"+place.website+">Website</a></p>";
+div+= "<p class='distance'>"+ place.distance + " KM</p>";
 
 
 div+="</div>";
