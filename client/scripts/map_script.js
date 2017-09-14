@@ -212,8 +212,8 @@ function htmlInfoWindow(place)
         });
     }*/
     ul+="<li>" + place.hospiname + "</li>";
-    ul+="<li>" + place.address + "</li>";
-    ul+="<li>" + place.tel + "</li>";
+    ul+="<li>" + place.latitude + "</li>";
+    ul+="<li>" + place.longitude + "</li>";
 
     // ending unordered list
     ul += "</ul>";
@@ -235,6 +235,7 @@ function configure()
     // update UI after zoom level changes
     google.maps.event.addListener(map, "zoom_changed", function() {
 	//removediv();
+        removeMarkers();
         update();
     });
 
@@ -356,7 +357,8 @@ document.getElementById('sidebar').innerHTML+=div;
 function removediv() {
 var elem = document.getElementById('pj');
 while(elem!=null){
-  elem = document.getElementById('pj');
- elem.parentNode.removeChild(elem);}
+    elem.parentNode.removeChild(elem);
+    elem = document.getElementById('pj');
+ }
 
 }
