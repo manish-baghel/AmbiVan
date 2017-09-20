@@ -3,6 +3,26 @@
   <head>
     <%include ../partials/_header.ejs%>
     <%include ambulancePartials/head_script.ejs%>
+    <style>
+        html,
+    body,
+    #map-canvas,
+    .container-fluid {
+        /* height of these elements */
+        
+        height: 100%;
+        /* no margin around these elements */
+    
+        margin: 0;
+        /* disable scrollbars */
+        
+        overflow: hidden;
+    
+        /* no padding within these elements */
+    
+        padding: 0;
+    }
+    </style>
   </head>
   <body>
      <%include ../partials/_page_nav.ejs%>

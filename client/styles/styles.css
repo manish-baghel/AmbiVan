@@ -23,22 +23,7 @@ a{
     color: inherit;
 }
 
-html,
-body,
-#map-canvas,
-.container-fluid {
-    /* height of these elements */
-    
-    height: 100%;
-    /* no margin around these elements */
-    
-    margin: 0;
-    /* disable scrollbars */
-    
-    /* no padding within these elements */
-    
-    padding: 0;
-}
+
 /* align form to right of pan control */
 
 #form {
