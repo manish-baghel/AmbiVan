@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Geolocation</title>
-    <%include partials/_header.ejs%>
-  </head>
-  <body>
-<!-- Map Div    -->
-      <section id="sidebar">
-          <header>Hospitals</header>
-      </section>
-      <div id="map"></div>
+<html lang="en">
+<head>
+   <% include partials/_header.ejs %>
+   <% include homePartials/head_content.ejs %>
+</head>
+<body>
+<!-- Page nav section-->
+<% include partials/_page_nav.ejs %>
 
 
+<!--Banner-->
+<% include homePartials/slider.ejs %>
 
-<!--  Map API integration    -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY" type="text/javascript"></script>
-<!--  End of Map API Integration    -->
-	  <script src="../scripts/markerwithlabel_packed.js"></script>
-      <script> //initMap();
-            google.maps.event.addDomListener(window, 'load', initMap);
-      </script>
-  </body>
+
+<!-- About section-->
+<% include homePartials/about.ejs %>
+
+
+<!--Contact Section-->
+<% include homePartials/contact.ejs %>
+
+
+<% include partials/_footer.ejs %>
+
+<% include homePartials/footer_script.ejs %>
+
+</body>
 </html>

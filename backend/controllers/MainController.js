@@ -5,15 +5,17 @@ var database = require('../Models/db_model');
 
 module.exports = {
     home:home,
-    homePost:homePost
+    getAmbulance:getAmbulance,
+    ambulancePost:ambulancePost
 }
-function home(req, res){
+function home(req,res){
     res.render('index');
 }
-
-function homePost(req, res){
+function getAmbulance(req, res){
+    res.render("ambulance/getAmbulance");
+}
+function ambulancePost(req, res){
     var data = req.body;
-
     var query = makeQuery(data);
     var out = database.getDataFromTable(
          query,

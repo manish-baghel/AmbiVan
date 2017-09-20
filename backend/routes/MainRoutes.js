@@ -8,5 +8,8 @@ var app = require('../../ApplicationInstance');
 
 
 router.route('/').get(mainController.home);
-router.route('/').post(mainController.homePost);
+router.route('/ambulance/getAmbulance').get(mainController.getAmbulance);
+router.route('/').post(mainController.ambulancePost);
+
+
 module.exports = router;

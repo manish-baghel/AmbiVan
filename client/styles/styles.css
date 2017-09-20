@@ -39,7 +39,6 @@ body,
     /* no padding within these elements */
     
     padding: 0;
-    font-family: 'Myriad-Pro', sans-serif;
 }
 /* align form to right of pan control */
 
@@ -170,6 +169,7 @@ body,
 #map {
     height: 100vh;
     width: 100%;
+    margin-top: 75px;
 }
 .tag {
     background: #fff;
@@ -184,6 +184,7 @@ body,
     font-size: 1.3em;
 }
 #sidebar {
+    margin-top: 75px;
     position: absolute;
     width: 350px;
     left: 0;
