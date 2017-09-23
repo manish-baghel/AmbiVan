@@ -215,6 +215,7 @@ a{
     font-size: 1.1em;
 }
 #side {
+    margin-top: 75px;
     position: absolute;
     width: 350px;
     left: 0px;
@@ -232,6 +233,7 @@ a{
     font-weight: 400;
     padding: 20px;
 }
+
 .details .name{
     color: #000;
     font-size: 1.2em;
