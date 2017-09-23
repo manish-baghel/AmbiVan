@@ -1,0 +1,16 @@
+<!-- script tags
+	============================================================= -->
+<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+<script src="../../vendor/jquery-2.1.1.js"></script>
+<script src="../../scripts/smoothscroll.js"></script>
+<script src="../../vendor/bootstrap.min.js"></script>
+<script src="../../scripts/customAnim.js"></script>
+<script>
+    window.sr = ScrollReveal({reset:true});
+    sr.reveal('.card', { duration: 1000 ,distance: '400px' },200);
+    sr.reveal('.card1', { origin: 'left',distance: '500px'});
+    sr.reveal('.card2', { origin: 'bottom',distance: '500px'});
+    sr.reveal('.card3', { origin: 'right',distance: '500px'});
+    sr.reveal('#main-header', {duration: 1000, origin:'left',distance:'300px'});
+    sr.reveal('#main-header-text', {duration: 1000, origin:'right',distance:'3000px'});
+</script>

@@ -5,13 +5,16 @@ var database = require('../Models/db_model');
 
 module.exports = {
     home:home,
-    homePost:homePost
+    getAmbulance:getAmbulance,
+    ambulancePost:ambulancePost
 }
-function home(req, res){
+function home(req,res){
     res.render('index');
 }
-
-function homePost(req, res){
+function getAmbulance(req, res){
+    res.render("ambulance/getAmbulance");
+}
+function ambulancePost(req, res){
     var data = req.body;
     if(data.signal == 0)
     {
@@ -51,12 +54,12 @@ function makeQuery(data){
     if (sw_lng <= ne_lng)
     {
         // doesn't cross the antimeridian
-        query = 'SELECT * FROM places WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude AND longitude <= '+ne_lng+')';
+        query = 'SELECT * FROM ambivan WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude AND longitude <= '+ne_lng+')';
     }
     else
     {
         // crosses the antimeridian
-        query = 'SELECT * FROM places WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude OR longitude <= '+ne_lng+')';
+        query = 'SELECT * FROM ambivan WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude OR longitude <= '+ne_lng+')';
     }
     console.log(query);
     return query;
