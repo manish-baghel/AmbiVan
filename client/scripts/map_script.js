@@ -48,6 +48,12 @@ function initMap()
 		styles: styles,
         	zoom: 14
     	}
+
+    // get DOM node in which map will be instantiated
+    var canvas = $("#map").get(0);
+
+        // instantiate map
+        map = new google.maps.Map(canvas,options);
         infoWindow = new google.maps.InfoWindow;
 
         // Try HTML5 geolocation.
@@ -63,6 +69,7 @@ function initMap()
 				//lng: data.longitude
             		};
                     getalldata();
+                    ambu();
             		//infoWindow.open(map);
             		map.setCenter(pos);
 			
@@ -86,12 +93,8 @@ function initMap()
         }
 
 
- 	// get DOM node in which map will be instantiated
-   	var canvas = $("#map").get(0);
-
-    	// instantiate map
-   		map = new google.maps.Map(canvas,options);
-
+       //   
+        //directionsDisplay.setPanel(document.getElementById('dvPanel'));
     	// configure UI once Google Map is idle (i.e., loaded)
   		google.maps.event.addListenerOnce(map, "idle", configure);
 
@@ -152,7 +155,30 @@ var icon = {
     //  on clicking marker
    google.maps.event.addListener(marker, "click", function() {
     //showInfo(marker);
-    
+
+   //     source = //document.getElementById("txtSource").value;
+   // destination = //document.getElementById("txtDestination").value;
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+    directionsDisplay.setMap(null);
+    directionsDisplay.setMap(map);
+    var source = new google.maps.LatLng(pos.lat,pos.lng);
+    var destination = new google.maps.LatLng(place.latitude,place.longitude);
+                
+
+    var request = {
+        origin: source,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+ 
+
 
         
     // making unordred list using function htmlInfo Window 
@@ -293,6 +319,7 @@ function update()
     
 
         var obj = {
+            signal:0,
             NE:{
             lat: ne.lat(),
             lng: ne.lng()
@@ -320,14 +347,14 @@ function update()
                 var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);
                 
 
-                getDistance(origin1,destination,i,data);
+                getDistance(origin1,destination,i,data,num);
                 
 
             }
             
         });
 }
-function callba(response,status,i,data)
+function callba(response,status,i,data,ni)
 {
     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
     var distance = response.rows[0].elements[0].distance.text;
@@ -346,7 +373,7 @@ function callba(response,status,i,data)
          alert("Unable to find the distance via road.");
     }
     removeMarkers();
-    if(i == num-1)
+    if(i == ni-1)
     {
         data.sort(function(a,b){
             return a.distance-b.distance; 
@@ -358,7 +385,7 @@ function callba(response,status,i,data)
     }
 }
 
-function getDistance(origin1,destination,i,data){
+function getDistance(origin1,destination,i,data,ni){
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
         origins: [origin1],
@@ -369,10 +396,45 @@ function getDistance(origin1,destination,i,data){
         avoidTolls: false
     }, function (response, status) 
     {
-        callba(response,status,i,data);
+        callba(response,status,i,data,ni);
     }
     );
     
+}
+
+function ambu()
+{
+    var obj = {
+        signal: 1
+    }
+    $.post('http://localhost:4000', obj)
+        .done(function(data)
+        {
+            for (var i = 0; i < Object.keys(data).length; i++)
+            {
+                showInfoambu(data[i]);
+            }
+        });
+}
+
+
+function showInfoambu(place)
+{
+var div = "";//="<section id='sidebar'> ";
+div+= "<div  class='details'>";
+
+div+= "<p class='name'>"+ place.name +"</p>";
+div+= "<a class= 'phone' href=tel:"+place.phone+">"+ place.phone +"</a>";
+/*
+div+= "<p><a href =http://"+ place.website + ">"+place.website+"</a></p>" ;
+div+= "<p>"+ place.distance + " KM</p>";
+*/
+div+= "<p>" + place.address + "</p>"
+
+div+="</div>";
+//div+="</section>";
+document.getElementById('side').innerHTML+=div;
+
 }
 
 
@@ -478,6 +540,6 @@ function callba1(response,status,i,data)
         }
         else
         {
-             alert("Unable to find the distance via road.");
+            // alert("Unable to find the distance via road.");
         }   
 }

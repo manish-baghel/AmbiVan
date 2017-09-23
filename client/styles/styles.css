@@ -169,6 +169,8 @@ body,
 
 #map {
     height: 100vh;
+    right:350px;
+    
     width: 100%;
 }
 .tag {
@@ -186,7 +188,7 @@ body,
 #sidebar {
     position: absolute;
     width: 350px;
-    left: 0;
+    right: 0;
     z-index:1;
     height: 100vh;
     overflow:auto;
@@ -226,4 +228,27 @@ body,
 .details .phone{
     color: #c82328;
     font-size: 1.1em;
+}
+#side {
+    position: absolute;
+    width: 350px;
+    left: 0px;
+    z-index:1;
+    height: 100vh;
+    overflow:auto;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+#side header{
+    color: #fff;
+    background-color: #c82328;
+    font-size: 1.6em;
+    height: 100px;
+    font-weight: 400;
+    padding: 20px;
+}
+.details .name{
+    color: #000;
+    font-size: 1.2em;
+    text-transform: capitalize;
 }

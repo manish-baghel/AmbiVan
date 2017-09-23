@@ -13,7 +13,8 @@ function home(req, res){
 
 function homePost(req, res){
     var data = req.body;
-
+    if(data.signal == 0)
+    {
     var query = makeQuery(data);
     var out = database.getDataFromTable(
          query,
@@ -24,6 +25,21 @@ function homePost(req, res){
            return res.json(result);
         }
     );
+    }
+    else
+    {
+        var query = " Select * from ambivan";
+        console.log(query);
+        var out = database.getDataFromTable(
+         query,
+        function(err,result){
+            if(err) throw err;
+            result = parseIt(result);
+            console.log(result);
+           return res.json(result);
+        }
+    );
+    }
 }
 function makeQuery(data){
     var sw_lat = data.SW.lat;
