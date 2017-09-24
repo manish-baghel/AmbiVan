@@ -150,12 +150,19 @@ a{
     border-radius: 8px;
 }
 
+.map-container{
+    position: absolute;
+    top: 90px;
+    height: 100vh;
+    width: 100%;
+}
+
+
 #map {
+    position: absolute;
+    left: 350px;
     height: 100vh;
     right:350px;
-    
-    width: 100%;
-    margin-top: 75px;
 }
 .tag {
     background: #fff;
@@ -170,7 +177,6 @@ a{
     font-size: 1.3em;
 }
 #sidebar {
-    margin-top: 75px;
     position: absolute;
     width: 350px;
     right: 0;
@@ -215,10 +221,10 @@ a{
     font-size: 1.1em;
 }
 #side {
-    margin-top: 75px;
     position: absolute;
     width: 350px;
     left: 0px;
+    top: 0;
     z-index:1;
     height: 100vh;
     overflow:auto;

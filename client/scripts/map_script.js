@@ -46,7 +46,8 @@ function initMap()
 		zoomControl: true,
 		center: {lat: -34.397, lng: 150.644},
 		styles: styles,
-        	zoom: 14
+        	zoom: 14,
+            gestureHandling: 'greedy'
     	}
 
     // get DOM node in which map will be instantiated
@@ -370,7 +371,7 @@ function callba(response,status,i,data,ni)
     }
     else
     {
-         alert("Unable to find the distance via road.");
+//         alert("Unable to find the distance via road.");
     }
     removeMarkers();
     if(i == ni-1)
