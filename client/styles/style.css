@@ -2,8 +2,12 @@
     margin: 0;
     padding: 0;
 }
+html{
+    
+}
 body {
     font-family: 'BenchNine', sans-serif;
+    
 }
 li {
     list-style: none;
@@ -98,7 +102,9 @@ li a.active {
 }
 
 /*slider area*/
-
+.slider{
+    
+}
 .slider-row {
     margin: 0;
     padding: 0;

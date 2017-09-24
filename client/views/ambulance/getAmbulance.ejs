@@ -4,24 +4,10 @@
     <%include ../partials/_header.ejs%>
     <%include ambulancePartials/head_script.ejs%>
     <style>
-        html,
-    body,
-    #map-canvas,
-    .container-fluid {
-        /* height of these elements */
-        
-        height: 100%;
-        /* no margin around these elements */
-    
-        margin: 0;
-        /* disable scrollbars */
-        
-        overflow: hidden;
-    
-        /* no padding within these elements */
-    
-        padding: 0;
-    }
+      
+        .top-header{
+            position:relative;
+        }
     </style>
   </head>
   <body>
@@ -47,5 +33,6 @@
       <script> //initMap();
             google.maps.event.addDomListener(window, 'load', initMap);
       </script>
+      <%include ../homePartials/footer_script.ejs%>
   </body>
 </html>

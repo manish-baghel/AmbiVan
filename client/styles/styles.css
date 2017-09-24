@@ -160,9 +160,11 @@ a{
 
 #map {
     position: absolute;
-    left: 350px;
+    left: 300px;
     height: 100vh;
-    right:350px;
+    right:300px;
+    min-width: 500px;
+    
 }
 .tag {
     background: #fff;
@@ -178,7 +180,7 @@ a{
 }
 #sidebar {
     position: absolute;
-    width: 350px;
+    width: 300px;
     right: 0;
     z-index:1;
     height: 100vh;
@@ -222,7 +224,7 @@ a{
 }
 #side {
     position: absolute;
-    width: 350px;
+    width: 300px;
     left: 0px;
     top: 0;
     z-index:1;
@@ -244,4 +246,27 @@ a{
     color: #000;
     font-size: 1.2em;
     text-transform: capitalize;
+}
+@media (max-width: 1098px) {
+    #map{
+        width: 100vw;
+        height: 50vh;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        left: 0;
+        right: 0;
+    }
+    #side{
+        position: relative;
+        float: left;
+        width: 50%;
+        height: 600px;
+    }
+    #sidebar{
+        position: relative;
+        float: right;
+        width: 50%;
+        height: 600px;
+    }
 }

@@ -44,7 +44,7 @@ function initMap()
 	var options = 	
 	{
 		zoomControl: true,
-		center: {lat: -34.397, lng: 150.644},
+		center: {lat: 28.5450, lng: 77.1926},
 		styles: styles,
         	zoom: 14,
             gestureHandling: 'greedy'
