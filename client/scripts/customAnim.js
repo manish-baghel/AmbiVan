@@ -29,9 +29,9 @@ jQuery(document).ready(function () {
         });
     });
 
-//    $("#button1").click(function () {
-//       window.location.href = "ambulance/getAmbulance";
-//    });
+    $(".ambuSearch-button").click(function () {
+       window.location.href = "/ambulance/getAmbulance";
+    });
     
     function onScroll(event) {
         var scrollPos = $(document).scrollTop();
