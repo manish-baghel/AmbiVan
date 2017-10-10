@@ -202,10 +202,18 @@ li a.active {
     color: #fd0019;
     margin-top: 75px;
 }
-.about h4 {
-    font-size: 24px;
+.about .about-content{
+    font-size: 1.8em;
+    text-align: justify;
+}
+
+.about h3 {
+    font-size: 2.2em;
     color: #737373;
     margin-bottom: 45px;
+}
+#about-irsc{
+    
 }
 .about-img img {
     width: 100%;
