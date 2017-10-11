@@ -7,7 +7,12 @@ var userSchema = mongoose.Schema({
 
         local        : {
         email        : String,
-        password     : String
+        password     : String,
+        role:{
+        type: String,
+        enum: ['member', 'client', 'owner', 'admin'],
+        default: 'member'
+        }
     }
 });
 
