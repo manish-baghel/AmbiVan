@@ -61,9 +61,12 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         });
     });
 
-    app.get('/admin',isLoggedIn,function(req,res){
+    app.get('/admin',requireRole('admin'),function(req,res){
         res.render('admin.ejs');
-    })
+    });
+    app.get('/member',requireRole('member'),function(req,res){
+        res.render('member.ejs');
+    });
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -80,21 +83,37 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
+            // console.log(res);
             res.render('login.ejs', { message: req.flash('loginMessage') });
         });
 
         // process the login form
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/admin', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+        app.post('/login',function(){
+            passport.authenticate('local-login', {
+            successRedirect : (function(req,res){
+                console.log(req);
+                console.log(res);
+                console.log("hiihi");
+                if(true){
+                    console.log(res);
+                    return 'admin';
+                }
+                
+                else
+                    return 'member';
+                }()), // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the login page if there is an error
             failureFlash : true // allow flash messages
-        }));
+        })});
 
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
             res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
+     (function(){
+        if(true)
+        return     });;
+ })
 
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
@@ -145,6 +164,29 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+function requireRole (role) {
+    return function (req, res, next) {
+       // var str = JSON.stringify(req.user);
+//       var str = JSON.stringify(req.user.local.role, null, 4)
+
+  //      console.log(str);
+        
+        if(typeof req.user != "undefined")
+        { 
+            if ( req.user.local.role === role) {
+              //res.send(403);
+                //res.redirect('/login');
+                next();
+            } else {
+                //next();
+                res.send(403);
+            }
+        }else
+        {
+            res.redirect('/login');
+        }
+    }
+}
 
 
 
