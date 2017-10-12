@@ -334,7 +334,7 @@ function update()
         console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://localhost:4000', obj)
+       $.post('http://localhost:4000/ambulance', obj)
         .done(function(data){
             console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
@@ -408,7 +408,7 @@ function ambu()
     var obj = {
         signal: 1
     }
-    $.post('http://localhost:4000', obj)
+    $.post('http://localhost:4000/ambulance', obj)
         .done(function(data)
         {
             for (var i = 0; i < Object.keys(data).length; i++)
@@ -486,7 +486,7 @@ function getalldata()
         console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://localhost:4000', obj)
+       $.post('http://localhost:4000/ambulance', obj)
         .done(function(data){
             console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;

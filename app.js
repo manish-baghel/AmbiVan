@@ -73,7 +73,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         req.logout();
         res.redirect('/');
     });
-
+/*
+    app.post('/',function(req,res,next){
+        console.log(req.body);
+    });
+*/
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

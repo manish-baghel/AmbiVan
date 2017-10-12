@@ -9,7 +9,7 @@ var app = require('../../ApplicationInstance');
 
 router.route('/').get(mainController.home);
 router.route('/ambulance/getAmbulance').get(mainController.getAmbulance);
-router.route('/').post(mainController.ambulancePost);
-
+router.route('/ambulance').post(mainController.ambulancePost);
+router.route('/').post(mainController.postform);
 
 module.exports = router;

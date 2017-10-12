@@ -6,7 +6,8 @@ var database = require('../Models/db_model');
 module.exports = {
     home:home,
     getAmbulance:getAmbulance,
-    ambulancePost:ambulancePost
+    ambulancePost:ambulancePost,
+    postform:postform
 }
 function home(req,res){
     res.render('index');
@@ -43,6 +44,19 @@ function ambulancePost(req, res){
         }
     );
     }
+}
+function postform(req,res,next){
+    console.log(req.body);
+    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.name+'\''+','+'\''+req.body.email+'\''+','+'\''+req.body.phone+'\''+','+'\''+req.body.message+'\''+')';
+    console.log(query);
+    var out = database.getDataFromTable(query,function(err,result){
+        if(err) throw err;
+        else
+        {
+            console.log("form submitted");
+            res.redirect('/');
+        }
+    });
 }
 function makeQuery(data){
     var sw_lat = data.SW.lat;
