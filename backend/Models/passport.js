@@ -47,7 +47,6 @@ module.exports = function(passport) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
-
                 // if no user is found, return the message
                 if (!user)
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
@@ -120,6 +119,7 @@ module.exports = function(passport) {
                         var user = req.user;
                         user.local.email = email;
                         user.local.password = user.generateHash(password);
+                        newUser.local.role = req.body.role;
                         user.save(function (err) {
                             if (err)
                                 return done(err);

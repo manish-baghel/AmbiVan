@@ -88,23 +88,37 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         });
 
         // process the login form
-        app.post('/login',function(){
-            passport.authenticate('local-login', {
-            successRedirect : (function(req,res){
-                console.log(req);
-                console.log(res);
-                console.log("hiihi");
-                if(true){
-                    console.log(res);
-                    return 'admin';
+        app.post('/login',function(req,res,next){
+            passport.authenticate('local-login',function(err ,user,info){
+          /*  if (err) { return next(err); }
+            // Redirect if it fails
+            if (!user) { return res.redirect('/login'); }
+            req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            // Redirect if it succeeds
+            return res.redirect('/' + user.username);*/
+            if (err)
+                    return next(err);
+                // if no user is found, return the message
+                if (!user)
+                    return res.redirect('/login');//done(null, false, req.flash('loginMessage', 'No user found.'));
+
+             /*   if (!user.validPassword(password))
+                    return res.redirect('/login');//done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+*/
+                // all is well, return user
+                req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                // Redirect if it succeeds
+                return res.redirect('/' + user.local.role);
+                });
+                /*else
+                {
+                    return res.redirect('/'+user.local.role);//done(null, user);
                 }
-                
-                else
-                    return 'member';
-                }()), // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the login page if there is an error
-            failureFlash : true // allow flash messages
-        })});
+        */
+        })(req, res, next);
+    });
 
         // SIGNUP =================================
         // show the signup form
