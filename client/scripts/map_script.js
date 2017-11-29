@@ -10,7 +10,7 @@ var map;
 
 // markers for map
 var Markers = [];
-
+var ambulan = new Array();
 // info window
 var infoWindow ;
 
@@ -87,12 +87,12 @@ function initMap()
             		handleLocationError(true, infoWindow, map.getCenter());
           	});
         } 
-	else 
-	{
-          	// Browser doesn't support Geolocation
+    	else 
+    	{
+              	// Browser doesn't support Geolocation
         	handleLocationError(false, infoWindow, map.getCenter());
         }
-
+        getvan();
 
        //   
         //directionsDisplay.setPanel(document.getElementById('dvPanel'));
@@ -108,6 +108,71 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
 }  
+
+
+function checker()
+{
+    $.post('http://localhost:4000/van')
+    .done(function(data){
+        num = Object.keys(data).length;
+        for(var i=0;i<num;i++)
+        {
+            // function for adding marker of ambulances
+            if(data[i].lat!=ambulan['\''+data[i].id+'\''].position.lat()||data[i].lng!=ambulan['\''+data[i].id+'\''].position.lng())
+            {
+              updater(data[i]);
+            }
+        }
+    })
+    setTimeout(checker,2000);
+}
+
+
+
+function updater(van)
+{
+   console.log("why here");
+    var id = van.id;
+    var numDeltas = 200;
+    var delay = 20; //milliseconds
+    var i = 0;
+    var deltaLat;
+    var deltaLng;
+    var val = ambulan['\''+id+'\''].position.lat();
+    var val1 = ambulan['\''+id+'\''].position.lng()
+    var lat = van.lat;
+    var lng = van.lng;
+    deltaLat = (lat-val)/numDeltas;
+    deltaLng = (lng-val1)/numDeltas;
+    console.log(lat+" "+val+" "+lng+" "+val1+" "+id);
+    console.log(ambulan);
+    (function myloop(i){
+        setTimeout(function(){
+            val+=deltaLat;
+            val1+=deltaLng;
+            ambulan['\''+id+'\''].setPosition(new google.maps.LatLng(val,val1));
+            if(--i)
+                myloop(i);
+        },10);
+    })(100);
+
+   // moveMarker();
+    function moveMarker(){
+        Markers[id].position[0] += deltaLat;
+        Markers[id].position[1] += deltaLng;
+        var latlng = new google.maps.LatLng(Markers[id].position[0], Markers[id].position[1]);
+        Markers[id].setPosition(latlng);
+        if(i!=numDeltas){
+            i++;
+            setTimeout(moveMarker, delay);
+        }
+    }
+
+    //    setTimeout(function() {Markers[id].setPosition(new google.maps.LatLng(28.5450+i/100,77.1926+i/1000));}, 10000);
+    
+}
+
+
 
 function addMarker(place)
 {
@@ -145,16 +210,16 @@ var icon = {
 	
 */
     var marker = new MarkerWithLabel({
-	icon: icon, //"http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
-	position: new google.maps.LatLng((place.latitude).substr(0,7), (place.longitude).substr(0,7)),
-	map: map,
-	labelContent: place.hospiname ,
-	labelAnchor: new google.maps.Point(30, 0),
-	labelClass: "tag",
+    	icon: icon, //"http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
+    	position: new google.maps.LatLng((place.latitude).substr(0,7), (place.longitude).substr(0,7)),
+    	map: map,
+    	labelContent: place.hospiname ,
+    	labelAnchor: new google.maps.Point(30, 0),
+    	labelClass: "tag",
     });
 
     //  on clicking marker
-   google.maps.event.addListener(marker, "click", function() {
+   google.maps.event.addListener(marker, "click", function(){
     //showInfo(marker);
 
    //     source = //document.getElementById("txtSource").value;
@@ -178,28 +243,36 @@ var icon = {
             directionsDisplay.setDirections(response);
         }
     });
- 
-
-
-        
+    
     // making unordred list using function htmlInfo Window 
     var ul = htmlInfoWindow(place);
         
     // show news
     showInfomarker(marker, ul);
-        
-        
-    
+            
     });
    
-
-
    showInfo(place);
     
    // google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
     Markers.push(marker);
     
 }
+
+function addMarker1(place)
+{
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(place.lat,place.lng),
+        map: map,
+    });
+    console.log('here at add marker');
+    showInfo(marker);
+    console.log("place "+place.id);
+    ambulan['\''+place.id+'\''] = marker;
+    console.log(ambulan);
+
+}
+
 
 function showInfomarker(marker, content)
 {
@@ -298,11 +371,23 @@ function removeMarkers()
         Markers[i].setMap(null);
     }
     Markers.length = 0;
-removediv();
+    removediv();
 }
 
-
-
+// get data of ambulances
+function getvan()
+{
+    $.post('http://localhost:4000/van')
+    .done(function(data){
+        num = Object.keys(data).length;
+        for(var i=0;i<num;i++)
+        {
+            // function for adding marker of ambulances
+            addMarker1(data[i]);
+        }
+    })
+   checker();
+}
 
 
 /**
@@ -330,13 +415,13 @@ function update()
             lng: sw.lng()
             }
         }
-        console.log(obj.NE);
-        console.log(obj.SW);
+    //    console.log(obj.NE);
+    //    console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
        $.post('http://localhost:4000/ambulance', obj)
         .done(function(data){
-            console.log(Object.keys(data).length);
+    //        console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
             num = Object.keys(data).length;
             for (var i = 0; i < Object.keys(data).length; i++)
@@ -365,7 +450,7 @@ function callba(response,status,i,data,ni)
     distance = distance.substring(0,distance.length-3);
     //console.log(distance);
     distance = parseFloat(distance);
-    console.log(i+"yo");
+//    console.log(i+"yo");
     data[i].distance = distance;
  
     }
@@ -383,6 +468,7 @@ function callba(response,status,i,data,ni)
         {
             addMarker(data[j]);
         }
+      //  updater(0);
     }
 }
 
