@@ -73,7 +73,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         req.logout();
         res.redirect('/');
     });
-
+/*
+    app.post('/',function(req,res,next){
+        console.log(req.body);
+    });
+*/
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -104,6 +108,38 @@ app.use(flash()); // use connect-flash for flash messages stored in session
             failureRedirect : '/login', // redirect back to the login page if there is an error
             failureFlash : true // allow flash messages
         }));
+
+        app.post('/login',function(req,res,next){
+            passport.authenticate('local-login',function(err ,user,info){
+          /*  if (err) { return next(err); }
+            // Redirect if it fails
+            if (!user) { return res.redirect('/login'); }
+            req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            // Redirect if it succeeds
+            return res.redirect('/' + user.username);*/
+            if (err)
+                    return next(err);
+                // if no user is found, return the message
+                if (!user)
+                    return res.redirect('/login');//done(null, false, req.flash('loginMessage', 'No user found.'));
+
+             /*   if (!user.validPassword(password))
+                    return res.redirect('/login');//done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+*/
+                // all is well, return user
+                req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                // Redirect if it succeeds
+                return res.redirect('/' + user.local.role);
+                });
+                /*else
+                {
+                    return res.redirect('/'+user.local.role);//done(null, user);
+                }
+        */
+        })(req, res, next);
+    });
 
         // SIGNUP =================================
         // show the signup form

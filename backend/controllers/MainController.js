@@ -6,7 +6,9 @@ var database = require('../Models/db_model');
 module.exports = {
     home:home,
     getAmbulance:getAmbulance,
-    ambulancePost:ambulancePost
+    ambulancePost:ambulancePost,
+    postform:postform,
+    listvan:listvan
 }
 function home(req,res){
     res.render('index');
@@ -24,7 +26,7 @@ function ambulancePost(req, res){
         function(err,result){
             if(err) throw err;
             result = parseIt(result);
-            console.log(result);
+      //      console.log(result);
            return res.json(result);
         }
     );
@@ -32,18 +34,44 @@ function ambulancePost(req, res){
     else
     {
         var query = " Select * from ambivan";
-        console.log(query);
+     //   console.log(query);
         var out = database.getDataFromTable(
          query,
         function(err,result){
             if(err) throw err;
             result = parseIt(result);
-            console.log(result);
+       //     console.log(result);
            return res.json(result);
         }
     );
     }
 }
+
+function listvan(req,res){
+    console.log("here at listvan");
+    var query = 'SELECT * from ambulance';
+    var out = database.getDataFromTable(query, function(err,result){
+        if(err) throw err;
+        result = parseIt(result);
+        return res.json(result);
+    });
+}
+
+
+function postform(req,res,next){
+    //console.log(req.body);
+    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.name+'\''+','+'\''+req.body.email+'\''+','+'\''+req.body.phone+'\''+','+'\''+req.body.message+'\''+')';
+   // console.log(query);
+    var out = database.getDataFromTable(query,function(err,result){
+        if(err) throw err;
+        else
+        {
+            console.log("form submitted");
+            res.redirect('/');
+        }
+    });
+}
+
 function makeQuery(data){
     var sw_lat = data.SW.lat;
     var ne_lat = data.NE.lat;
@@ -61,7 +89,7 @@ function makeQuery(data){
         // crosses the antimeridian
         query = 'SELECT * FROM places WHERE '+sw_lat+' <= latitude AND latitude <= '+ne_lat+' AND ('+sw_lng+' <= longitude OR longitude <= '+ne_lng+')';
     }
-    console.log(query);
+    //console.log(query);
     return query;
 }
 function parseIt(rawData){
