@@ -88,8 +88,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         });
 
         // process the login form
-        app.post('/login',function(){
-            passport.authenticate('local-login', {
+        app.post('/login',passport.authenticate('local-login', {
             successRedirect : (function(req,res){
                 console.log(req);
                 console.log(res);
@@ -104,7 +103,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
                 }()), // redirect to the secure profile section
             failureRedirect : '/login', // redirect back to the login page if there is an error
             failureFlash : true // allow flash messages
-        })});
+        }));
 
         // SIGNUP =================================
         // show the signup form
