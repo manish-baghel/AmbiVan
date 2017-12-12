@@ -114,6 +114,23 @@ app.use(flash()); // use connect-flash for flash messages stored in session
         });
 
         // process the login form
+        app.post('/login',passport.authenticate('local-login', {
+            successRedirect : (function(req,res){
+                console.log(req);
+                console.log(res);
+                console.log("hiihi");
+                if(true){
+                    console.log(res);
+                    return 'admin';
+                }
+                
+                else
+                    return 'member';
+                }()), // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the login page if there is an error
+            failureFlash : true // allow flash messages
+        }));
+
         app.post('/login',function(req,res,next){
             passport.authenticate('local-login',function(err ,user,info){
           /*  if (err) { return next(err); }
