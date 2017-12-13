@@ -107,7 +107,7 @@ function listvan(req,res){
 
 
 function postform(req,res,next){
-    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.contact_body.message+'\''+')';
+    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.body.contact_message+'\''+')';
    // console.log(query);
     // var out = database.getDataFromTable(query,function(err,result){
     //     if(err) throw err;
