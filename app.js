@@ -49,6 +49,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
     app.get('/', function(req, res) {
         res.render('index.ejs');
     });
+    app.get('/about', function(req, res) {
+        res.render('about/about.ejs');
+    });
 
     app.get('/auth',function(req,res){
         res.render('auth.ejs')

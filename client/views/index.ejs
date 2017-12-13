@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-   <% include partials/_header.ejs %>
-   <% include homePartials/head_content.ejs %>
+    <title>Ambivan</title>
+    <% include partials/_header.ejs %>
 </head>
 <body>
-<!-- Page nav section-->
+<!--Navbar-->
 <% include partials/_page_nav.ejs %>
 
-
 <!--Banner-->
-<% include homePartials/slider.ejs %>
+<% include homePartials/banner.ejs %>
+
+<!--main-body-->
+<% include homePartials/main_body.ejs %>
+
+<!--Our League-->
+<% include homePartials/league.ejs %>
 
 
-<!-- About section-->
-<% include homePartials/about.ejs %>
-
-
-<!--Contact Section-->
-<% include homePartials/contact.ejs %>
-
+<!--Footer-->
 <% include partials/_footer.ejs %>
 
-<% include homePartials/footer_script.ejs %>
 
+<% include partials/_footer_script.ejs %>
 </body>
 </html>
