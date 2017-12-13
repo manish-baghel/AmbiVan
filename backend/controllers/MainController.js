@@ -6,6 +6,14 @@ var database = require('../Models/db_model');
 module.exports = {
     home:home,
     getAmbulance:getAmbulance,
+    about:about,
+    paramedic:paramedic,
+    responder:responder,
+    vision:vision,
+    awareness:awareness,
+    driver:driver,
+    bookoverview:bookoverview,
+    auth:auth,
     ambulancePost:ambulancePost,
     postform:postform,
     listvan:listvan,
@@ -14,12 +22,48 @@ module.exports = {
     formparamedic:formparamedic
 
 }
+
+//==============================================
+//============== GET REQUEST ===================
+//==============================================
+
 function home(req,res){
     res.render('index');
 }
 function getAmbulance(req, res){
     res.render("ambulance/getAmbulance");
 }
+
+function about(req,res){
+    res.render('about/about.ejs');
+}
+function paramedic(req,res){
+    res.render('paramedic/paramedic.ejs');
+}
+function responder(req,res)
+{
+    res.render('responder/responder.ejs');
+}
+function vision(req,res){
+    res.render('vision/vision.ejs');
+}
+function awareness(req,res){
+    res.render('awareness/awareness.ejs');
+}
+function driver(req,res){
+    res.render('driverTraining/driverTraining.ejs');
+}
+function bookoverview(req,res){
+    res.render('random/random.ejs');
+}
+function auth(req,res){
+    res.render('auth.ejs');
+}
+
+//================================================
+//=============== POST REQUEST ===================
+//================================================
+
 function ambulancePost(req, res){
     var data = req.body;
     if(data.signal == 0)

@@ -67,34 +67,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // normal routes ===============================================================
 
-    // show the home page (will also have our login links)
-    app.get('/', function(req, res) {
-        res.render('index.ejs');
-    });
-    app.get('/about', function(req, res) {
-        res.render('about/about.ejs');
-    });
-    app.get('/paramedic', function(req, res) {
-        res.render('paramedic/paramedic.ejs');
-    });
-    app.get('/responder', function(req, res) {
-        res.render('responder/responder.ejs');
-    });
-    app.get('/vision', function(req, res) {
-        res.render('vision/vision.ejs');
-    });
-    app.get('/awareness', function(req, res) {
-        res.render('awareness/awareness.ejs');
-    });
-    app.get('/driverTraining', function(req, res) {
-        res.render('driverTraining/driverTraining.ejs');
-    });
-    app.get('/book-overview', function(req, res) {
-        res.render('random/random.ejs');
-    });
-    app.get('/auth',function(req,res){
-        res.render('auth.ejs');
-    });
+
+
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
@@ -271,8 +245,8 @@ function requireRole (role) {
 
 
 
-
 app.use('/', mainRoutes);
+
 app.listen(app.get('port'), function () {
     console.log('Application running in port '+ app.get('port'));
 });
