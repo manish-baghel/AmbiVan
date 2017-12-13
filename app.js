@@ -12,13 +12,35 @@ var configDB = require('./backend/Models/database.js');
 var compression = require('compression');
 var _ = require("underscore");
 var mainRoutes = require('./backend/routes/MainRoutes');
+var firebase = require('firebase');
 
-//configuration ===============================================
+//configuration of firebase ===============================================
+// Initialize Firebase
+// TODO: Replace with your project's customized code snippet
+var config = {
+  apiKey: "AIzaSyDWE-XUIiRDR2cGnDZodcidGlFngaKwfiM ",
+  authDomain: "ambivan-master.firebaseapp.com",
+  databaseURL: "https://ambivan-master.firebaseio.com",
+  storageBucket: "ambivan-master.appspot.com",
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+(function writeUserData() {
+  firebase.database().ref().set({
+    username: "name",
+    email: "email",
+    profile_picture : "imageUrl"
+  });
+  console.log("hi"+" "+database.ref());
+
+})();
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
 require('./backend/Models/passport')(passport); // pass passport for configuration
+
 
 
 
