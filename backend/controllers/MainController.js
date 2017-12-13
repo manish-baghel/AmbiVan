@@ -8,7 +8,8 @@ module.exports = {
     getAmbulance:getAmbulance,
     ambulancePost:ambulancePost,
     postform:postform,
-    listvan:listvan
+    listvan:listvan,
+    formresponder:formresponder
 }
 function home(req,res){
     res.render('index');
@@ -59,17 +60,23 @@ function listvan(req,res){
 
 
 function postform(req,res,next){
-    //console.log(req.body);
-    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.name+'\''+','+'\''+req.body.email+'\''+','+'\''+req.body.phone+'\''+','+'\''+req.body.message+'\''+')';
+    var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.contact_body.message+'\''+')';
    // console.log(query);
-    var out = database.getDataFromTable(query,function(err,result){
-        if(err) throw err;
-        else
-        {
-            console.log("form submitted");
-            res.redirect('/');
-        }
-    });
+    // var out = database.getDataFromTable(query,function(err,result){
+    //     if(err) throw err;
+    //     else
+    //     {
+    //         console.log("form submitted");
+    //         res.redirect('/');
+    //     }
+    // });
+    res.redirect('/');
+}
+
+function formresponder(req,res,next){
+    // var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.contact_body.message+'\''+')';
+    console.log(req.body);
+    res.redirect('/responder');
 }
 
 function makeQuery(data){

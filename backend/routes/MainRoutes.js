@@ -12,4 +12,5 @@ router.route('/ambulance/getAmbulance').get(mainController.getAmbulance);
 router.route('/ambulance').post(mainController.ambulancePost);
 router.route('/').post(mainController.postform);
 router.route('/van').post(mainController.listvan);
+router.route('/responder').post(mainController.formresponder);
 module.exports = router;
