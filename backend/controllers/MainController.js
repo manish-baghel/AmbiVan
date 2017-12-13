@@ -9,7 +9,10 @@ module.exports = {
     ambulancePost:ambulancePost,
     postform:postform,
     listvan:listvan,
-    formresponder:formresponder
+    formresponder:formresponder,
+    formdriver:formdriver,
+    formparamedic:formparamedic
+
 }
 function home(req,res){
     res.render('index');
@@ -76,7 +79,17 @@ function postform(req,res,next){
 function formresponder(req,res,next){
     // var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.contact_body.message+'\''+')';
     console.log(req.body);
-    res.redirect('/responder');
+   res.redirect('/responder');
+}
+
+function formdriver(req,res,next){
+    console.log(req.body);
+    res.redirect('/driverTraining');
+}
+
+function formparamedic(req,res,next){
+    console.log(req.body);
+    res.redirect('/paramedic');
 }
 
 function makeQuery(data){

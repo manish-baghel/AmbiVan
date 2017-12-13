@@ -13,4 +13,6 @@ router.route('/ambulance').post(mainController.ambulancePost);
 router.route('/').post(mainController.postform);
 router.route('/van').post(mainController.listvan);
 router.route('/responder').post(mainController.formresponder);
+router.route('/driver').post(mainController.formdriver);
+router.route('/paramedic').post(mainController.formparamedic);
 module.exports = router;
