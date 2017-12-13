@@ -74,10 +74,24 @@ app.use(flash()); // use connect-flash for flash messages stored in session
     app.get('/about', function(req, res) {
         res.render('about/about.ejs');
     });
-
+    app.get('/paramedic', function(req, res) {
+        res.render('paramedic/paramedic.ejs');
+    });
+    app.get('/responder', function(req, res) {
+        res.render('responder/responder.ejs');
+    });
+    app.get('/vision', function(req, res) {
+        res.render('vision/vision.ejs');
+    });
+    app.get('/driverTraining', function(req, res) {
+        res.render('driverTraining/driverTraining.ejs');
+    });
+    app.get('/book-overview', function(req, res) {
+        res.render('random/random.ejs');
+    });
     app.get('/auth',function(req,res){
-        res.render('auth.ejs')
-    })
+        res.render('auth.ejs');
+    });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
