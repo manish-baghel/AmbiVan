@@ -19,6 +19,10 @@ var num;
 
 var pos;
 
+//====================================================================================
+//===================== Inintialize map =============================================
+//===================== Sunil Kumar     =============================================
+//====================================================================================
 function initMap()
 {
     
@@ -46,61 +50,67 @@ function initMap()
 		zoomControl: true,
 		center: {lat: 28.5450, lng: 77.1926},
 		styles: styles,
-        	zoom: 14,
-            gestureHandling: 'greedy'
-    	}
+    	zoom: 14,
+        gestureHandling: 'greedy'
+	}
 
     // get DOM node in which map will be instantiated
     var canvas = $("#map").get(0);
 
-        // instantiate map
-        map = new google.maps.Map(canvas,options);
-        infoWindow = new google.maps.InfoWindow;
+    // instantiate map
+    map = new google.maps.Map(canvas,options);
+    infoWindow = new google.maps.InfoWindow;
 
-        // Try HTML5 geolocation.
+    // Try HTML5 geolocation.
+    // find geo location
+    if (navigator.geolocation) 
+   {
+    	navigator.geolocation.getCurrentPosition(function(position)
+       {
+      		pos = {
+      			//lat: data.latitude,
+    			lat: position.coords.latitude,
+      			lng: position.coords.longitude
+    			//lng: data.longitude
+    		};
 
-        if (navigator.geolocation) 
-	   {
-        	navigator.geolocation.getCurrentPosition(function(position)
-		      {
-            		 pos = {
-              			//lat: data.latitude,
-				lat: position.coords.latitude,
-              			lng: position.coords.longitude
-				//lng: data.longitude
-            		};
-                    getalldata();
-                    ambu();
-            		//infoWindow.open(map);
-            		map.setCenter(pos);
-			
-                    var marker = new MarkerWithLabel({
-                    //icon:icon,// "http://maps.google.com/mapfiles/kml/pal2/icon31.png",   
-                    position: new google.maps.LatLng(pos.lat, pos.lng),
-                    map: map,
-                    labelContent: "your location" ,
-                    labelAnchor: new google.maps.Point(30, 0),
-                    labelClass: "tag",
-                  });
+            //=====================================================================
+            //============= GET ALL THE DATA OF DISTANCE OF HOSPITALS =============
+            //=====================================================================
+            getalldata();
+            ambu();
+    		//infoWindow.open(map);
+    		map.setCenter(pos);
+	
+            var marker = new MarkerWithLabel({
+            //icon:icon,// "http://maps.google.com/mapfiles/kml/pal2/icon31.png",   
+            position: new google.maps.LatLng(pos.lat, pos.lng),
+            map: map,
+            labelContent: "your location" ,
+            labelAnchor: new google.maps.Point(30, 0),
+            labelClass: "tag",
+          });
 
-          	}, function() {
-            		handleLocationError(true, infoWindow, map.getCenter());
-          	});
-        } 
-    	else 
-    	{
-              	// Browser doesn't support Geolocation
-        	handleLocationError(false, infoWindow, map.getCenter());
-        }
-        getvan();
+      	}, function() {
+        		handleLocationError(true, infoWindow, map.getCenter());
+      	});
+    } 
+	else 
+	{
+      	// Browser doesn't support Geolocation
+    	handleLocationError(false, infoWindow, map.getCenter());
+    }
+    getvan();
 
-       //   
-        //directionsDisplay.setPanel(document.getElementById('dvPanel'));
-    	// configure UI once Google Map is idle (i.e., loaded)
-  		google.maps.event.addListenerOnce(map, "idle", configure);
+    //directionsDisplay.setPanel(document.getElementById('dvPanel'));
+	// configure UI once Google Map is idle (i.e., loaded)
+	google.maps.event.addListenerOnce(map, "idle", configure);
 
 }
 
+//=========================================================================
+//========= IF GEOLOCATION OF BROWSER DON'T WORKS SHOW THIS MESSAGE =======
+//=========================================================================
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -109,7 +119,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.open(map);
 }  
 
-
+//==========================================================================
+//=============== FUCTION FOR GETING LOCATION OF AMBULANCES ================
+//=============== CHECKS EVERY 2SEC   ======================================
+//==========================================================================
 function checker()
 {
     $.post('http://localhost:4000/van')
@@ -120,7 +133,8 @@ function checker()
             // function for adding marker of ambulances
             if(data[i].lat!=ambulan['\''+data[i].id+'\''].position.lat()||data[i].lng!=ambulan['\''+data[i].id+'\''].position.lng())
             {
-              updater(data[i]);
+                // updates location on maps so that markesrs move
+                updater(data[i]);
             }
         }
     })
@@ -128,10 +142,11 @@ function checker()
 }
 
 
-
+//=============================================================================
+//=========== FUNCTION FOR UPDATING MARKERS LOCATION =========================
+//============================================================================
 function updater(van)
 {
-   console.log("why here");
     var id = van.id;
     var numDeltas = 200;
     var delay = 20; //milliseconds
@@ -172,7 +187,9 @@ function updater(van)
     
 }
 
-
+//=====================================================================================
+//================= ADDS LOCATION MARKER OF HOSPITALS TO MAP ==========================
+//=====================================================================================
 
 function addMarker(place)
 {
@@ -192,7 +209,10 @@ function addMarker(place)
       var labelIndex = 0;
 	var myLatLng = {lat: place.lat, lng: place.lng};
 	console.log(myLatLng);
-*/		
+*/	
+//=============================================================
+//============ MARKER OF HOSPIATLS ============================
+//==============================================================
 var icon = {
     url: "../assets/images/hos.png", // url
     scaledSize: new google.maps.Size(30, 30), // scaled size
@@ -220,35 +240,35 @@ var icon = {
 
     //  on clicking marker
    google.maps.event.addListener(marker, "click", function(){
-    //showInfo(marker);
+        //showInfo(marker);
 
-   //     source = //document.getElementById("txtSource").value;
-   // destination = //document.getElementById("txtDestination").value;
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-    directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
-    directionsDisplay.setMap(null);
-    directionsDisplay.setMap(map);
-    var source = new google.maps.LatLng(pos.lat,pos.lng);
-    var destination = new google.maps.LatLng(place.latitude,place.longitude);
-                
+       //     source = //document.getElementById("txtSource").value;
+       // destination = //document.getElementById("txtDestination").value;
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+        directionsDisplay.setMap(null);
+        directionsDisplay.setMap(map);
+        var source = new google.maps.LatLng(pos.lat,pos.lng);
+        var destination = new google.maps.LatLng(place.latitude,place.longitude);
+                    
 
-    var request = {
-        origin: source,
-        destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-    
-    // making unordred list using function htmlInfo Window 
-    var ul = htmlInfoWindow(place);
+        var request = {
+            origin: source,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
         
-    // show news
-    showInfomarker(marker, ul);
+        // making unordred list using function htmlInfo Window 
+        var ul = htmlInfoWindow(place);
+            
+        // show news
+        showInfomarker(marker, ul);
             
     });
    
@@ -258,21 +278,6 @@ var icon = {
     Markers.push(marker);
     
 }
-
-function addMarker1(place)
-{
-    var marker = new MarkerWithLabel({
-        position: new google.maps.LatLng(place.lat,place.lng),
-        map: map,
-    });
-    console.log('here at add marker');
-    showInfo(marker);
-    console.log("place "+place.id);
-    ambulan['\''+place.id+'\''] = marker;
-    console.log(ambulan);
-
-}
-
 
 function showInfomarker(marker, content)
 {
@@ -298,22 +303,15 @@ function showInfomarker(marker, content)
     infoWindow.open(map, marker);
 }
 
+
+//=======================================================================
+//=========== Listing of hospitals on right section  ===================
+//=========== of screen after calculating there distance ================
+//=======================================================================
 function htmlInfoWindow(place)
 {
     // start a unordered list
     var ul = "<ul>";
-    // create a template
-   // var temp = _.template("<li> <a href = '<%- link %>' target= '_blank'><%- title %></a></li>");
-    
-    // inserting link and title into template
-   /* for(var i=0, n = data.length;i<n;i++)
-    {
-        ul+=temp({
-            link:data[i].link,
-            title:data[i].title
-            
-        });
-    }*/
     ul+="<li>" + place.hospiname + "</li>";
     ul+="<li>" + place.phone + "</li>";
     ul+="<li>" + place.address + "</li>";
@@ -327,18 +325,18 @@ function htmlInfoWindow(place)
 
 /**
  * Configures application.
+ * controls flows of command and 
+ * running given function on specifc events
  */
 function configure()
 {
     // update UI after map has been dragged
     google.maps.event.addListener(map, "dragend", function() {
-	//removediv();
         update();
     });
 
     // update UI after zoom level changes
     google.maps.event.addListener(map, "zoom_changed", function() {
-	//removediv();
         removeMarkers();
         update();
     });
@@ -363,6 +361,10 @@ function configure()
    
 }
 
+//=================================================================
+//======= Removes hospitals marker on dragging of graph ===========
+//================== And also zoom changes ========================
+//=================================================================
 function removeMarkers()
 {
 	
@@ -374,7 +376,10 @@ function removeMarkers()
     removediv();
 }
 
-// get data of ambulances
+//============================================================================
+//======== Add markers of all the ambulances for first time =================
+//==============  Called form mapinit =======================================
+//=======================================================================
 function getvan()
 {
     $.post('http://localhost:4000/van')
@@ -388,7 +393,22 @@ function getvan()
     })
    checker();
 }
+//=======================================================================
+//========== addes amubulance markers =================================
+//====================================================================
+function addMarker1(place)
+{
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(place.lat,place.lng),
+        map: map,
+    });
+    console.log('here at add marker');
+    showInfo(marker);
+    console.log("place "+place.id);
+    ambulan['\''+place.id+'\''] = marker;
+    console.log(ambulan);
 
+}
 
 /**
  * Updates UI's markers.
@@ -400,7 +420,7 @@ function update()
     var ne = bounds.getNorthEast();
     var sw = bounds.getSouthWest();
 
-        removeMarkers();  
+    removeMarkers();  
     // remove div elements
     
 
@@ -427,19 +447,38 @@ function update()
             for (var i = 0; i < Object.keys(data).length; i++)
             {
                
-             //   console.log(data[i]);
+                //console.log(data[i]);
                 var po = data;
                 var origin1 = new google.maps.LatLng(pos.lat,pos.lng);
                 var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                
-
                 getDistance(origin1,destination,i,data,num);
-                
-
             }
             
         });
 }
+
+
+//=============================================================================
+//============= Calculates distance of markers  ===============================
+//============ from given origin and destinations==============================
+//=============================================================================
+function getDistance(origin1,destination,i,data,ni){
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origin1],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, function (response, status) 
+    {
+        callba(response,status,i,data,ni);
+    }
+    );
+    
+}
+
 function callba(response,status,i,data,ni)
 {
     if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
@@ -471,24 +510,9 @@ function callba(response,status,i,data,ni)
       //  updater(0);
     }
 }
-
-function getDistance(origin1,destination,i,data,ni){
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix({
-        origins: [origin1],
-        destinations: [destination],
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false
-    }, function (response, status) 
-    {
-        callba(response,status,i,data,ni);
-    }
-    );
-    
-}
-
+//============================================================================
+//============= List ambulances in side section ===============================
+//===========================================================================
 function ambu()
 {
     var obj = {
@@ -504,7 +528,7 @@ function ambu()
         });
 }
 
-
+//========= List the data of ambulace in left section=========================
 function showInfoambu(place)
 {
 var div = "";//="<section id='sidebar'> ";
@@ -524,34 +548,37 @@ document.getElementById('side').innerHTML+=div;
 
 }
 
-
-
+//=========================================================================
+// ===============  LIST DATA OF HOSPITALS ===============================
+//=========================================================================
 function showInfo(place)
 {
-var div = "";//="<section id='sidebar'> ";
-div+= "<div id='pj' class='details'>";
+    var div = "";//="<section id='sidebar'> ";
+    div+= "<div id='pj' class='details'>";
 
-div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
-div+= "<a class='phone' href=tel:"+place.phone+">"+place.phone+"</a>";
-div+= "<p><a class='website' target='_blank' href =http://"+place.website+">Website</a></p>";
-div+= "<p class='distance'>"+ place.distance + " KM</p>";
+    div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
+    div+= "<a class='phone' href=tel:"+place.phone+">"+place.phone+"</a>";
+    div+= "<p><a class='website' target='_blank' href =http://"+place.website+">Website</a></p>";
+    div+= "<p class='distance'>"+ place.distance + " KM</p>";
 
 
-div+="</div>";
-//div+="</section>";
-document.getElementById('sidebar').innerHTML+=div;
-
+    div+="</div>";
+    //div+="</section>";
+    document.getElementById('sidebar').innerHTML+=div;
 }
 
-
+//=======================================================================
+//================= REMOVE DIV ELEMENTS OF HOSPITALS ====================
+//================= WHEN MARKERS ARE RELOADED DUE =======================
+//================= TO DRAGGING OR ZOOM CHANGE ==========================
+//=======================================================================
 function removediv() {
-var elem = document.getElementById('pj');
-while(elem!=null){
-  
- elem.parentNode.removeChild(elem);
- elem = document.getElementById('pj');
-}
-
+    var elem = document.getElementById('pj');
+    while(elem!=null){
+      
+     elem.parentNode.removeChild(elem);
+     elem = document.getElementById('pj');
+    }
 }
 
 
@@ -583,15 +610,9 @@ function getalldata()
              //   console.log(data[i]);
                 var po = data;
                 var origin1 = new google.maps.LatLng(pos.lat,pos.lng);
-                var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                
-
+                var destination = new google.maps.LatLng(data[i].latitude,data[i].longitude);                
                 getDistance1(origin1,destination,i,data);
-                
-
-            }
-            
-            
+            }    
         });
 }
 
@@ -621,7 +642,7 @@ function callba1(response,status,i,data)
         distance = distance.substring(0,distance.length-3);
         //console.log(distance);
         distance = parseFloat(distance);
-        console.log(i+"yo");
+        // console.log(i+"yo");
         data[i].distance = distance;
        
         }
