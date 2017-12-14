@@ -533,7 +533,7 @@ div+= "<div id='pj' class='details'>";
 
 div+= "<p class='hospiname'>"+ place.hospiname +"</p>";
 div+= "<a class='phone' href=tel:"+place.phone+">"+place.phone+"</a>";
-div+= "<p><a class='website' href =http://"+place.website+">Website</a></p>";
+div+= "<p><a class='website' target='_blank' href =http://"+place.website+">Website</a></p>";
 div+= "<p class='distance'>"+ place.distance + " KM</p>";
 
 
