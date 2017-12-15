@@ -2,6 +2,12 @@
  * Created by manish on 6/9/17.
  */
 var database = require('../Models/db_model');
+var firebase = require('firebase');
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyDWhs_RWjp5s9VREGYo9jgtGFE8qXI7zKY',
+  Promise:Promise
+});
+var promise = require('promise');
 
 module.exports = {
     home:home,
@@ -21,7 +27,9 @@ module.exports = {
     formdriver:formdriver,
     formparamedic:formparamedic,
     availability:availability,
-    faq:faq
+    faq:faq,
+    test:test,
+    near:near
 
 }
 
@@ -143,6 +151,61 @@ function formdriver(req,res,next){
 function formparamedic(req,res,next){
     console.log(req.body);
     res.redirect('/paramedic');
+}
+
+function test(req,res,next){
+    console.log(req.body);
+    res.send({string:"Partaay!!!!"});
+}
+var user="sunil";
+function near(req,res,next){
+console.log("0");
+    var data = req.body;
+
+    var database = firebase.database();
+    var read = promise.denodeify(readuserdata);
+    var dist = promise.denodeify(distance);
+    var lat = 28.542109;
+    var lng = 77.1924421;
+    var p =read()
+        .then(dist())
+        .then(res.send(user))
+
+   
+    
+}
+function expectOK(response) {
+    expect(response.status).toBe(200);
+    expect(response.json.status).toBe('OK');
+    return response;
+}
+
+function distance(){
+    googleMapsClient.distanceMatrix({
+      origins : '28.542109,77.1924421',
+      destinations: '29.5421,78.19244',
+      mode: 'driving',
+      avoid: ['tolls']
+    })
+    .asPromise()
+    .then(function(res,err) {
+       
+        // console.log(response.json.rows[0].elements[0]);
+       console.log("2");
+        // user.Chetan.vehicleId = "go";// response.json.rows[0].elements.distance.text;
+        // console.log(user);
+    })
+}
+
+function readuserdata() {
+    firebase.database()
+    .ref('/Driver_Vehicle_Location')
+    .once('value')
+    .then(function(snapshot){
+        user = "jaat";
+        console.log("1/2"); 
+        })
+    .catch((err) => {console.log(err)});
 }
 
 function makeQuery(data){
