@@ -26,6 +26,8 @@ module.exports = {
     formresponder:formresponder,
     formdriver:formdriver,
     formparamedic:formparamedic,
+    availability:availability,
+    faq:faq,
     test:test,
     near:near
 
@@ -58,6 +60,12 @@ function vision(req,res){
 function awareness(req,res){
     res.render('awareness/awareness.ejs');
 }
+function faq(req,res){
+    res.render('faq/faq.ejs');
+}
+function availability(req,res){
+    res.render('availability/availability.ejs');
+}
 function driver(req,res){
     res.render('driverTraining/driverTraining.ejs');
 }
@@ -67,6 +75,7 @@ function bookoverview(req,res){
 function auth(req,res){
     res.render('auth.ejs');
 }
+
 
 //================================================
 //=============== POST REQUEST ===================

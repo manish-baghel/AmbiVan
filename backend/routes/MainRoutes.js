@@ -20,6 +20,8 @@ router.route('/awareness').get(mainController.awareness);
 router.route('/driverTraining').get(mainController.driver);
 router.route('/book-overview').get(mainController.bookoverview);
 router.route('/auth').get(mainController.auth);
+router.route('/availability').get(mainController.availability);
+router.route('/faq').get(mainController.faq);
 
 //====================================================
 //============ POST REQUEST ==========================
