@@ -30,5 +30,7 @@ router.route('/van').post(mainController.listvan);
 router.route('/responder').post(mainController.formresponder);
 router.route('/driver').post(mainController.formdriver);
 router.route('/paramedic').post(mainController.formparamedic);
+router.route('/chetan').post(mainController.test);
+router.route('/near').get(mainController.near);
 
 module.exports = router;

@@ -12,35 +12,42 @@ var configDB = require('./backend/Models/database.js');
 var compression = require('compression');
 var _ = require("underscore");
 var mainRoutes = require('./backend/routes/MainRoutes');
-// var firebase = require('firebase');
+var firebase = require('firebase');
 
-// //configuration of firebase ===============================================
-// // Initialize Firebase
-// // TODO: Replace with your project's customized code snippet
-// var config = {
-//   apiKey: "AIzaSyDWE-XUIiRDR2cGnDZodcidGlFngaKwfiM ",
-//   authDomain: "ambivan-master.firebaseapp.com",
-//   databaseURL: "https://ambivan-master.firebaseio.com",
-//   storageBucket: "ambivan-master.appspot.com",
-// };
-// firebase.initializeApp(config);
+//configuration of firebase ===============================================
+// Initialize Firebase
+// TODO: Replace with your project's customized code snippet
+var config = {
+  apiKey: "AIzaSyCwjE3C7n5IsENcCUzpTHeKWgf8j7jpFQY",
+  authDomain: "ambivandriver.firebaseapp.com",
+  databaseURL: "https://ambivandriver.firebaseio.com",
+  projectId: "ambivandriver",
+  storageBucket: "ambivandriver.appspot.com",
+  messagingSenderId: "822725110617"
+};
+firebase.initializeApp(config);
 
-// var database = firebase.database();
-// (function writeUserData() {
-//   firebase.database().ref().set({
-//     username: "name",
-//     email: "email",
-//     profile_picture : "imageUrl"
-//   });
-//   console.log("hi"+" "+database.ref());
+var database = firebase.database();
+(function writeUserData() {
+  firebase.database().ref().child("driver3").set({
+    username: "name"
+    // email: "email",
+    // profile_picture : "imageUrl"
+  });
+  console.log("hi"+" "+database.ref());
 
-// })();
+})();
 
+(function readuserdata() {
+    firebase.database().ref('/driver2').once('value').then(function(snapshot){
+        var user = (snapshot.val() );
+        console.log(user['profile_picture']); 
+    })
+})();
 // // configuration ===============================================================
 // mongoose.connect(configDB.url); // connect to our database
 
 // require('./backend/Models/passport')(passport); // pass passport for configuration
-
 
 
 
