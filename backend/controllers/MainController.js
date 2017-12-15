@@ -8,6 +8,8 @@ var googleMapsClient = require('@google/maps').createClient({
   Promise:Promise
 });
 var promise = require('promise');
+var $ = require('jquery');
+var http = require('http');
 
 module.exports = {
     home:home,
@@ -29,7 +31,8 @@ module.exports = {
     availability:availability,
     faq:faq,
     test:test,
-    near:near
+    near:near,
+    push:push
 
 }
 
@@ -114,29 +117,69 @@ function ambulancePost(req, res){
 
 var number
 function listvan(req,res){
-    console.log("here at listvan");
-    var query = 'SELECT * from ambulance';
-    var out = database.getDataFromTable(query, function(err,result){
-        if(err) throw err;
-        result = parseIt(result);
-        console.log(result);
-        return res.json(result);
-    });
+    // console.log("here at listvan");
+    // var query = 'SELECT * from ambulance';
+    // var out = database.getDataFromTable(query, function(err,result){
+    //     if(err) throw err;
+    //     result = parseIt(result);
+    //     console.log(result);
+    //     return res.json(result);
+    // });
 
-    // firebase.database()
-    // .ref('/Driver_Vehicle_Location')
-    // .once('value')
-    // .then(function(snapshot){
-    //     driver = snapshot.val();
-    //     number = Object.keys(user).length;
-    //     // console.log("1/2");
-    //     // console.log(num+"--");
-    //     // distance();
-    //      res.json(driver);
-    //     })
+    firebase.database()
+    .ref('/Driver_Vehicle_Location')
+    .once('value')
+    .then(function(snapshot){
+        driver = snapshot.val();
+        number = Object.keys(user).length;
+        // console.log("1/2");
+        // console.log(num+"--");
+        // distance();
+         res.json(driver);
+        })
 
 }
+    var obj = {
+        'data':{
+            "title":'ambivan',
+            'detail':'someone about to die'
+        },
+        'to':'ceZc1-8B4gw:APA91bH7nRHs44-BMrl4HfraBhQNbA-MGTxkMtqQhv8kXK_MpBc3Z_K6Z9nAO4nfK5clNseFP0R5AJdn0CtVxA9mu2DZ7WBbOAAylvbRv8o61iEFJlq2zpUHU_E686uiyn14IK-vOTip'
+    }
 
+var options = {
+    hostname: 'https://fcm.googleapis.com',
+    path: '/fcm/send',
+    method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+    body: obj
+}
+
+function push(req,res)
+{
+
+
+    var req = http.request(options,function(res){
+        console.log('status: '+res.statusCode);
+        console.log('Headers: '+ JSON.stringify(res.headers));
+        res.setEncoding('utf8');
+        res.on('data', function (body) {
+        console.log('Body: ' + body);
+      });
+    });
+        req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+    });
+// write data to request body
+    // req.write();
+    req.end();
+
+
+    // $.post('https://fcm.googleapis.com/fcm/send',obj)
+    // .done(res.send(obj));
+}
 
 function postform(req,res,next){
     var query = 'Insert INTO `form` (`name` , `email` , `phone` , `message`) VALUES(' +'\''+req.body.contact_name+'\''+','+'\''+req.body.contact_email+'\''+','+'\''+req.body.contact_message+'\''+')';
@@ -169,7 +212,7 @@ function formparamedic(req,res,next){
 }
 
 function test(req,res,next){
-    console.log(req.body);
+    // console.log(req.body);
     res.send({string:"Partaay!!!!"});
 }
 
@@ -180,7 +223,7 @@ var sender;
 var value=10000000;
 var num;
 function near(req,res,next){
-console.log("0");
+// console.log("0");
     value =1000000000000;
     sender =null;
     var data = req.body;
@@ -225,8 +268,8 @@ function handler(key)
         .asPromise()
         .then(function(res,err) {
            
-            console.log(res.json.rows[0].elements[0]);
-           console.log("2"+key);
+            // console.log(res.json.rows[0].elements[0]);
+           // console.log("2"+key);
             
             user[key].vehicleId = res.json.rows[0].elements[0].distance.value;
             if(value > user[key].vehicleId)
@@ -252,8 +295,8 @@ function readuserdata() {
     .then(function(snapshot){
         user = snapshot.val();
         num = Object.keys(user).length;
-        console.log("1/2");
-        console.log(num+"--");
+        // console.log("1/2");
+        // console.log(num+"--");
         distance();
          
         })
@@ -265,7 +308,7 @@ function makeQuery(data){
     var ne_lat = data.NE.lat;
     var sw_lng = data.SW.lng;
     var ne_lng = data.NE.lng;
-    console.log(sw_lng+ne_lng);
+    // console.log(sw_lng+ne_lng);
     var query ;//= "SELECT * FROM ambivan";
     if (sw_lng <= ne_lng)
     {
