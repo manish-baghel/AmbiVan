@@ -128,13 +128,13 @@ function checker()
     $.post('http://localhost:4000/van')
     .done(function(data){
         num = Object.keys(data).length;
-        for(var i=0;i<num;i++)
+        for(var key in data)
         {
             // function for adding marker of ambulances
-            if(data[i].latitude!=ambulan['\''+data[i].id+'\''].position.lat()||data[i].longitude!=ambulan['\''+data[i].id+'\''].position.lng())
+            if(data[key].latitude!=ambulan['\''+data[key].vehicleId+'\''].position.lat()||data[key].longitude!=ambulan['\''+data[key].vehicleId+'\''].position.lng())
             {
                 // updates location on maps so that markesrs move
-                updater(data[i]);
+               updater(data[key]);
             }
         }
     })
@@ -147,7 +147,8 @@ function checker()
 //============================================================================
 function updater(van)
 {
-    var id = van.id;
+    
+    var id = van.vehicleId;
     var numDeltas = 200;
     var delay = 20; //milliseconds
     var i = 0;
@@ -155,12 +156,12 @@ function updater(van)
     var deltaLng;
     var val = ambulan['\''+id+'\''].position.lat();
     var val1 = ambulan['\''+id+'\''].position.lng()
-    var lat = van.lat;
-    var lng = van.lng;
+    var lat = van.latitude;
+    var lng = van.longitude;
     deltaLat = (lat-val)/numDeltas;
     deltaLng = (lng-val1)/numDeltas;
-    console.log(lat+" "+val+" "+lng+" "+val1+" "+id);
-    console.log(ambulan);
+    // console.log(lat+" "+val+" "+lng+" "+val1+" "+id);
+    // console.log(ambulan);
     (function myloop(i){
         setTimeout(function(){
             val+=deltaLat;
@@ -172,16 +173,16 @@ function updater(van)
     })(100);
 
    // moveMarker();
-    function moveMarker(){
-        Markers[id].position[0] += deltaLat;
-        Markers[id].position[1] += deltaLng;
-        var latlng = new google.maps.LatLng(Markers[id].position[0], Markers[id].position[1]);
-        Markers[id].setPosition(latlng);
-        if(i!=numDeltas){
-            i++;
-            setTimeout(moveMarker, delay);
-        }
-    }
+    // function moveMarker(){
+    //     Markers[id].position[0] += deltaLat;
+    //     Markers[id].position[1] += deltaLng;
+    //     var latlng = new google.maps.LatLng(Markers[id].position[0], Markers[id].position[1]);
+    //     Markers[id].setPosition(latlng);
+    //     if(i!=numDeltas){
+    //         i++;
+    //         setTimeout(moveMarker, delay);
+    //     }
+    // }
 
     //    setTimeout(function() {Markers[id].setPosition(new google.maps.LatLng(28.5450+i/100,77.1926+i/1000));}, 10000);
     
@@ -385,10 +386,10 @@ function getvan()
     $.post('http://localhost:4000/van')
     .done(function(data){
         num = Object.keys(data).length;
-        for(var i=0;i<num;i++)
+        for(var key in data)
         {
             // function for adding marker of ambulances
-            addMarker1(data[i]);
+            addMarker1(data[key]);
         }
     })
    checker();
@@ -399,14 +400,13 @@ function getvan()
 function addMarker1(place)
 {
     var marker = new MarkerWithLabel({
-        position: new google.maps.LatLng(place.lat,place.lng),
-        map: map,
+        position: new google.maps.LatLng(place.latitude,place.longitude),
+        map: map
     });
-    console.log('here at add marker');
+    // adds marker of driver on map
     showInfo(marker);
-    console.log("place "+place.id);
-    ambulan['\''+place.id+'\''] = marker;
-    console.log(ambulan);
+    // console.log(place);
+    ambulan['\''+place.vehicleId+'\''] = marker;
 
 }
 

@@ -22,6 +22,7 @@ router.route('/book-overview').get(mainController.bookoverview);
 router.route('/auth').get(mainController.auth);
 router.route('/availability').get(mainController.availability);
 router.route('/faq').get(mainController.faq);
+router.route('/noti').get(mainController.push);
 
 //====================================================
 //============ POST REQUEST ==========================

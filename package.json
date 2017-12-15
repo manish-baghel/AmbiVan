@@ -25,6 +25,7 @@
     "express": "^4.14.0",
     "express-session": "^1.0.0",
     "firebase": "latest",
+    "jquery": "^3.2.1",
     "method-override": "^1.0.0",
     "morgan": "^1.7.0",
     "mysql": "^2.14.1",
