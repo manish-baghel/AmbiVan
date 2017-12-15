@@ -131,7 +131,7 @@ function checker()
         for(var i=0;i<num;i++)
         {
             // function for adding marker of ambulances
-            if(data[i].lat!=ambulan['\''+data[i].id+'\''].position.lat()||data[i].lng!=ambulan['\''+data[i].id+'\''].position.lng())
+            if(data[i].latitude!=ambulan['\''+data[i].id+'\''].position.lat()||data[i].longitude!=ambulan['\''+data[i].id+'\''].position.lng())
             {
                 // updates location on maps so that markesrs move
                 updater(data[i]);

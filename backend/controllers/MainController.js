@@ -112,14 +112,29 @@ function ambulancePost(req, res){
     }
 }
 
+var number
 function listvan(req,res){
     console.log("here at listvan");
     var query = 'SELECT * from ambulance';
     var out = database.getDataFromTable(query, function(err,result){
         if(err) throw err;
         result = parseIt(result);
+        console.log(result);
         return res.json(result);
     });
+
+    // firebase.database()
+    // .ref('/Driver_Vehicle_Location')
+    // .once('value')
+    // .then(function(snapshot){
+    //     driver = snapshot.val();
+    //     number = Object.keys(user).length;
+    //     // console.log("1/2");
+    //     // console.log(num+"--");
+    //     // distance();
+    //      res.json(driver);
+    //     })
+
 }
 
 
@@ -157,19 +172,29 @@ function test(req,res,next){
     console.log(req.body);
     res.send({string:"Partaay!!!!"});
 }
+
 var user="sunil";
+var resp;
+var str;
+var sender;
+var value=10000000;
+var num;
 function near(req,res,next){
 console.log("0");
+    value =1000000000000;
+    sender =null;
     var data = req.body;
-
+    console.log(data);
+    str = data.LatLng;
+    resp = res;
     var database = firebase.database();
     var read = promise.denodeify(readuserdata);
     var dist = promise.denodeify(distance);
     var lat = 28.542109;
     var lng = 77.1924421;
     var p =read()
-        .then(dist())
-        .then(res.send(user))
+        
+        
 
    
     
@@ -181,20 +206,43 @@ function expectOK(response) {
 }
 
 function distance(){
-    googleMapsClient.distanceMatrix({
-      origins : '28.542109,77.1924421',
-      destinations: '29.5421,78.19244',
-      mode: 'driving',
-      avoid: ['tolls']
-    })
-    .asPromise()
-    .then(function(res,err) {
-       
-        // console.log(response.json.rows[0].elements[0]);
-       console.log("2");
-        // user.Chetan.vehicleId = "go";// response.json.rows[0].elements.distance.text;
-        // console.log(user);
-    })
+
+    for(var key in user)
+    {
+       handler(key);
+    }
+    
+}
+
+function handler(key)
+{
+     googleMapsClient.distanceMatrix({
+          origins : str,
+          destinations: user[key].latitude+','+user[key].longitude,
+          mode: 'driving',
+          avoid: ['tolls']
+        })
+        .asPromise()
+        .then(function(res,err) {
+           
+            console.log(res.json.rows[0].elements[0]);
+           console.log("2"+key);
+            
+            user[key].vehicleId = res.json.rows[0].elements[0].distance.value;
+            if(value > user[key].vehicleId)
+            {
+                value =user[key].vehicleId;
+                sender = user[key];
+            }
+            num--;
+            if(num==0)
+            {
+                console.log(sender+"  this is send");
+                resp.send(sender);
+            }
+              
+            // console.log(user);
+        })
 }
 
 function readuserdata() {
@@ -202,8 +250,12 @@ function readuserdata() {
     .ref('/Driver_Vehicle_Location')
     .once('value')
     .then(function(snapshot){
-        user = "jaat";
-        console.log("1/2"); 
+        user = snapshot.val();
+        num = Object.keys(user).length;
+        console.log("1/2");
+        console.log(num+"--");
+        distance();
+         
         })
     .catch((err) => {console.log(err)});
 }
