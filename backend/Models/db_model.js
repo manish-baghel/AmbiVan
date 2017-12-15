@@ -1,8 +1,9 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-host     : 'localhost',
-user     : 'root',
-password : 'PASSWORD',
+host     : 'ambivandb.clgxnt8wiied.us-east-2.rds.amazonaws.com',
+port     : 3306,
+user     : 'master',
+password : 'nodejs123',
 database : 'ambivan'
 });
 
