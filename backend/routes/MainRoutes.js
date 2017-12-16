@@ -35,5 +35,6 @@ router.route('/driver').post(mainController.formdriver);
 router.route('/paramedic').post(mainController.formparamedic);
 router.route('/chetan').post(mainController.test);
 router.route('/near').post(mainController.near);
+router.route('/ambulist').post(mainController.ambulist);
 
 module.exports = router;

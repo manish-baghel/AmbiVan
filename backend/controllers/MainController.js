@@ -32,7 +32,8 @@ module.exports = {
     faq:faq,
     test:test,
     near:near,
-    push:push
+    push:push,
+    ambulist:ambulist
 
 }
 
@@ -139,14 +140,17 @@ function listvan(req,res){
         })
 
 }
-    var obj = {
-        'data':{
-            "title":'ambivan',
-            'detail':'someone about to die'
-        },
-        'to':'ceZc1-8B4gw:APA91bH7nRHs44-BMrl4HfraBhQNbA-MGTxkMtqQhv8kXK_MpBc3Z_K6Z9nAO4nfK5clNseFP0R5AJdn0CtVxA9mu2DZ7WBbOAAylvbRv8o61iEFJlq2zpUHU_E686uiyn14IK-vOTip'
-    }
 
+//=============================================================================
+//=========== push notifications =============================================
+//============================================================================
+var obj = {
+    'data':{
+        "title":'ambivan',
+        'detail':'someone about to die'
+    },
+    'to':'ceZc1-8B4gw:APA91bH7nRHs44-BMrl4HfraBhQNbA-MGTxkMtqQhv8kXK_MpBc3Z_K6Z9nAO4nfK5clNseFP0R5AJdn0CtVxA9mu2DZ7WBbOAAylvbRv8o61iEFJlq2zpUHU_E686uiyn14IK-vOTip'
+}
 var options = {
     hostname: 'https://fcm.googleapis.com',
     path: '/fcm/send',
@@ -215,6 +219,20 @@ function test(req,res,next){
     // console.log(req.body);
     res.send({string:"Partaay!!!!"});
 }
+
+function ambulist(req,res,next){
+    firebase.database()
+    .ref('/Driver_Vehicle_Location')
+    .once('value')
+    .then(function(snapshot){
+        driver = snapshot.val();
+        number = Object.keys(user).length;
+         res.json(driver);
+    })
+}
+
+
+
 
 var user="sunil";
 var resp;
