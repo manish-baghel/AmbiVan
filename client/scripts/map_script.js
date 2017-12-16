@@ -173,6 +173,37 @@ function updater(van)
         },10);
     })(100);
 
+    var origin1 = new google.maps.LatLng(pos.lat,pos.lng);
+    var destination = new google.maps.LatLng(van.latitude,van.longitude);
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origin1],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, function (response, status) 
+    {
+            if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS")
+            {
+                var distance = response.rows[0].elements[0].distance.text;
+                var duration = response.rows[0].elements[0].duration.text;
+                    // = distance;
+                    // console.log(distance);
+                distance = distance.substring(0,distance.length-3);
+                //console.log(distance);
+                distance = parseFloat(distance);
+                van.distance = distance;
+                google.maps.event.addListener(ambulan['\''+id+'\''], "click", function(){  
+                    // making unordred list using function htmlInfo Window 
+                    var ul = htmlInfoWindowambu(van);
+                    // show news
+                    showInfomarker(ambulan['\''+id+'\''], ul);
+                });
+            }
+    }
+    );
    // moveMarker();
     // function moveMarker(){
     //     Markers[id].position[0] += deltaLat;
@@ -248,7 +279,7 @@ var icon = {
        // destination = //document.getElementById("txtDestination").value;
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
-        directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+        directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': false ,'preserveViewport': true,'suppressMarkers': true });
         directionsDisplay.setMap(null);
         directionsDisplay.setMap(map);
         var source = new google.maps.LatLng(pos.lat,pos.lng);
@@ -413,13 +444,59 @@ function addMarker1(place)
         position: new google.maps.LatLng(place.latitude,place.longitude),
         map: map
     });
+
+    google.maps.event.addListener(marker, "click", function(){
+        //showInfo(marker);
+
+       //     source = //document.getElementById("txtSource").value;
+       // destination = //document.getElementById("txtDestination").value;
+       var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': false ,'preserveViewport': true,'suppressMarkers': true});
+        // directionsDisplay.setMap(null);
+        directionsDisplay.setMap(map);
+        var source = new google.maps.LatLng(pos.lat,pos.lng);
+        var destination = new google.maps.LatLng(place.latitude,place.longitude);
+                    
+        var request = {
+            origin: source,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
+        
+        // making unordred list using function htmlInfo Window 
+        var ul = htmlInfoWindowambu(place);
+            
+        numi =1;
+        // show news
+        showInfomarker(marker, ul);
+        
+            
+    });
     // adds marker of driver on map
-    showInfo(marker);
+    // showInfo(marker);
     // console.log(place);
     ambulan['\''+place.vehicleId+'\''] = marker;
-
 }
 
+function htmlInfoWindowambu(place)
+{
+    // start a unordered list
+    var ul = "<ul>";
+    ul+="<li>" + place.vehicleId+ "</li>";
+    // ul+="<li>" + place.phone + "</li>";
+    // ul+="<li>" + place.address + "</li>";
+    ul+="<li>" + place.distance + " KM</li>";
+
+    // ending unordered list
+    ul += "</ul>";
+    return ul;
+}
 /**
  * Updates UI's markers.
  */
@@ -525,20 +602,29 @@ function callba(response,status,i,data,ni)
 //===========================================================================
 function ambu()
 {
-    var obj = {
-        signal: 1
-    }
-    $.post('http://localhost:4000/ambulance', obj)
-        .done(function(data)
+    // var obj = {
+    //     signal: 1
+    // }
+    // $.post('http://localhost:4000/ambulance', obj)
+    //     .done(function(data)
+    //     {
+    //         for (var i = 0; i < Object.keys(data).length; i++)
+    //         {
+    //             showInfoambu(data[i]);
+    //         }
+    //     });
+    $.post('http://localhost:4000/ambulist')
+    .done(function(data)
+    {
+        for (var key in data)
         {
-            for (var i = 0; i < Object.keys(data).length; i++)
-            {
-                showInfoambu(data[i]);
-            }
-        });
+            showInfoambu1(data[key]);
+        }
+    });
+
 }
 
-//========= List the data of ambulace in left section=========================
+//========= List the data of ambulace from sql in left section=========================
 function showInfoambu(place)
 {
 var div = "";//="<section id='sidebar'> ";
@@ -557,6 +643,27 @@ div+="</div>";
 document.getElementById('side').innerHTML+=div;
 
 }
+
+//===================== List ambulances from firebase in left section ============
+function showInfoambu1(place)
+{
+    var div = "";//="<section id='sidebar'> ";
+    div+= "<div  class='details'>";
+
+    div+= "<p class='name'>"+ place.vehicleId +"</p>";
+    div+= "<a class= 'phone' href=tel:"+place.phone+">"+ 8130200210 +"</a>";
+    /*
+    div+= "<p><a href =http://"+ place.website + ">"+place.website+"</a></p>" ;
+    div+= "<p>"+ place.distance + " KM</p>";
+    */
+    // div+= "<p>" + place.address + "</p>"
+
+    div+="</div>";
+    //div+="</section>";
+    document.getElementById('side').innerHTML+=div;
+
+}
+
 
 //=========================================================================
 // ===============  LIST DATA OF HOSPITALS ===============================
