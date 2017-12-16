@@ -164,7 +164,7 @@ a{
     height: 100vh;
     right:300px;
     min-width: 500px;
-    
+    top:0;
 }
 .tag {
     background: #fff;
@@ -179,37 +179,50 @@ a{
     font-size: 1.3em;
 }
 #sidebar {
+    text-align:center;
     position: absolute;
     width: 300px;
     right: 0;
     z-index:1;
-    height: 100vh;
-    overflow:auto;
+/*    height: 100vh;*/
+    overflow:hidden;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 #sidebar header{
     color: #fff;
-    background-color: #c82328;
+    background-color: var(--main-text-color);
     font-size: 1.6em;
     height: 100px;
     font-weight: 400;
     padding: 20px;
+    -webkit-box-shadow: -1px 1px 15px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 1px 15px 0px rgba(0,0,0,0.75);
+box-shadow: -1px 1px 15px 0px rgba(0,0,0,0.75);
+}
+#ambuContent,#hospiContent{
+    overflow: scroll;
+    max-height:600px;
+}
+.book-btn{
+    background-color:var(--main-text-color);
+    width:150px;
+    border-radius:25px;
+    color:#fff;
 }
 .details {
-    padding: 5px 5px 5px 20px;
-    width: 350px;
-    background-color: white;
+    padding: 5px 0px;
+    width: 100%;
     font-family: 'Myriad-Pro', sans-serif;
-    font-size: 1em;
-    border-bottom: 1px grey solid;
-    min-height: 50px;
+    font-size: 0.9em;
+    box-shadow: 0px 0px 10px -5px grey;
+    height: 170px;
     color: #c82328;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-bottom:10px;
 }
 .details .hospiname{
     color: #000;
-    font-size: 1.2em;
+    font-size: 1em;
     text-transform: capitalize;
 }
 .details .phone:before {
@@ -220,42 +233,81 @@ a{
 }
 .details .phone{
     color: #c82328;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 #side {
+    text-align:center;
     position: absolute;
     width: 300px;
     left: 0px;
     top: 0;
     z-index:1;
-    height: 100vh;
-    overflow:auto;
+/*    height: 100vh;*/
+    
+    overflow:hidden;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 #side header{
     color: #fff;
-    background-color: #c82328;
+    background-color: var(--main-text-color);
     font-size: 1.6em;
     height: 100px;
     font-weight: 400;
     padding: 20px;
+    -webkit-box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.75);
 }
 
 .details .name{
     color: #000;
-    font-size: 1.2em;
+    font-size: 1em;
     text-transform: capitalize;
 }
-@media (max-width: 1098px) {
+@media screen and (max-width: 1298px) {
     #map{
         width: 100vw;
-        height: 50vh;
+        height: 80vh;
         margin-left: auto;
         margin-right: auto;
         position: relative;
         left: 0;
         right: 0;
+    }
+    #side{
+        position: relative;
+        float: left;
+        min-height:0;
+        width: 50%;
+        max-height: 600px;
+        box-shadow: none;
+        text-align:center;
+    }
+    #side header,#sidebar header{
+        text-align: center;
+    }
+    #ambuContent{
+        border-right: 1px solid gray;
+    }
+    #sidebar{
+        position: relative;
+        text-align:center;
+        float: right;
+        min-height:0;
+        width: 50%;
+        max-height: 600px;
+        box-shadow: none;
+    }
+}
+@media (max-width: 768px) {
+    body{
+        
+    }
+    #map{
+        width: 100%;
+        height: 75%;
+        top:56px;
     }
     #side{
         position: relative;

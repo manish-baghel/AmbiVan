@@ -541,10 +541,11 @@ div+= "<p><a href =http://"+ place.website + ">"+place.website+"</a></p>" ;
 div+= "<p>"+ place.distance + " KM</p>";
 */
 div+= "<p>" + place.address + "</p>"
+div+= "<button class='book-btn btn mx-auto'>Book</button>"
 
 div+="</div>";
 //div+="</section>";
-document.getElementById('side').innerHTML+=div;
+document.getElementById('ambuContent').innerHTML+=div;
 
 }
 
@@ -564,7 +565,7 @@ function showInfo(place)
 
     div+="</div>";
     //div+="</section>";
-    document.getElementById('sidebar').innerHTML+=div;
+    document.getElementById('hospiContent').innerHTML+=div;
 }
 
 //=======================================================================
