@@ -602,25 +602,25 @@ function callba(response,status,i,data,ni)
 //===========================================================================
 function ambu()
 {
-    // var obj = {
-    //     signal: 1
-    // }
-    // $.post('http://ambivan.in/ambulance', obj)
-    //     .done(function(data)
-    //     {
-    //         for (var i = 0; i < Object.keys(data).length; i++)
-    //         {
-    //             showInfoambu(data[i]);
-    //         }
-    //     });
-    $.post('http://ambivan.in/ambulist')
-    .done(function(data)
-    {
-        for (var key in data)
+    var obj = {
+        signal: 1
+    }
+    $.post('http://ambivan.in/ambulance', obj)
+        .done(function(data)
         {
-            showInfoambu1(data[key]);
-        }
-    });
+            for (var i = 0; i < Object.keys(data).length; i++)
+            {
+                showInfoambu(data[i]);
+            }
+        });
+    // $.post('http://ambivan.in/ambulist')
+    // .done(function(data)
+    // {
+    //     for (var key in data)
+    //     {
+    //         showInfoambu1(data[key]);
+    //     }
+    // });
 
 }
 
