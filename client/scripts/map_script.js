@@ -125,7 +125,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //==========================================================================
 function checker()
 {
-    $.post('http://localhost:4000/van')
+    $.post('http://ambivan.in/van')
     .done(function(data){
         num = Object.keys(data).length;
         for(var key in data)
@@ -415,7 +415,7 @@ function removeMarkers()
 //=======================================================================
 function getvan()
 {
-    $.post('http://localhost:4000/van')
+    $.post('http://ambivan.in/van')
     .done(function(data){
         num = Object.keys(data).length;
         for(var key in data)
@@ -526,7 +526,7 @@ function update()
     //    console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://localhost:4000/ambulance', obj)
+       $.post('http://ambivan.in/ambulance', obj)
         .done(function(data){
     //        console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
@@ -605,7 +605,7 @@ function ambu()
     // var obj = {
     //     signal: 1
     // }
-    // $.post('http://localhost:4000/ambulance', obj)
+    // $.post('http://ambivan.in/ambulance', obj)
     //     .done(function(data)
     //     {
     //         for (var i = 0; i < Object.keys(data).length; i++)
@@ -613,7 +613,7 @@ function ambu()
     //             showInfoambu(data[i]);
     //         }
     //     });
-    $.post('http://localhost:4000/ambulist')
+    $.post('http://ambivan.in/ambulist')
     .done(function(data)
     {
         for (var key in data)
@@ -717,7 +717,7 @@ function getalldata()
         console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://localhost:4000/ambulance', obj)
+       $.post('http://ambivan.in/ambulance', obj)
         .done(function(data){
             console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
