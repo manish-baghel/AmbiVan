@@ -33,8 +33,8 @@ module.exports = {
     test:test,
     near:near,
     push:push,
-    ambulist:ambulist
-
+    ambulist:ambulist,
+    sure: sure
 }
 
 //==============================================
@@ -254,12 +254,11 @@ function near(req,res,next){
     var lat = 28.542109;
     var lng = 77.1924421;
     var p =read()
-        
-        
-
-   
-    
+            
 }
+
+var arr=[];
+
 function expectOK(response) {
     expect(response.status).toBe(200);
     expect(response.json.status).toBe('OK');
@@ -268,6 +267,7 @@ function expectOK(response) {
 
 function distance(){
 
+	arr = [];
     for(var key in user)
     {
        handler(key);
@@ -289,7 +289,8 @@ function handler(key)
             // console.log(res.json.rows[0].elements[0]);
            // console.log("2"+key);
             
-            user[key].vehicleId = res.json.rows[0].elements[0].distance.value;
+            user[key].vehicleId = res.json.rows[0].elements[0].distance.text;
+            arr.push(user[key]);
             if(value > user[key].vehicleId)
             {
                 value =user[key].vehicleId;
@@ -298,8 +299,13 @@ function handler(key)
             num--;
             if(num==0)
             {
-                console.log(sender+"  this is send");
-                resp.send(sender);
+                // user = Array.from(user);
+                // user.sort();
+                arr.sort(function(a,b){
+                    return a.vehicleId - b.vehicleId;
+                });
+                console.log("  this is send  :\n");
+                resp.json(arr);
             }
               
             // console.log(user);
@@ -313,12 +319,70 @@ function readuserdata() {
     .then(function(snapshot){
         user = snapshot.val();
         num = Object.keys(user).length;
+        // user = parseIt(user);
         // console.log("1/2");
         // console.log(num+"--");
         distance();
          
         })
     .catch((err) => {console.log(err)});
+}
+
+var num1;
+function sure(req,res,next){
+    var data = req.body;
+    var stro = data.LatLng;
+    // console.log(stro);
+    var query = 'SELECT * FROM places';
+    var out = database.getDataFromTable(
+    query,
+    function(err,result){
+        if(err) throw err;
+        result = parseIt(result);
+       // console.log(result);
+        distan(result,stro,res);   
+       // return res.json(result);
+    });
+
+}
+
+function distan(res,stro,response){
+    num1 = Object.keys(res).length;
+    for(var key in res)
+    {
+        // console.log(res[key]);
+        handler1(key,res,stro,response);   
+    }
+}
+function handler1(key,respo,stro,response){
+         googleMapsClient.distanceMatrix({
+          origins : stro,
+          destinations: respo[key].latitude+','+respo[key].longitude,
+          mode: 'driving',
+          avoid: ['tolls']
+        })
+        .asPromise()
+        .then(function(res,err) {
+           
+            // console.log(res.json.rows[0].elements[0]);
+           // console.log("2"+key);
+            // console.log(res.json.rows[0].elements[0])
+            respo[key].distance = res.json.rows[0].elements[0].distance.value;
+            respo[key].time = res.json.rows[0].elements[0].duration.text;
+            num1--;
+            if(num1 ==0)
+            {
+                // console.log(typeof(respo))
+                respo.sort(function(a,b){
+                    return a.distance - b.distance;
+                });
+                // setTimeout(function(){
+                	console.log(respo);
+                	response.json(respo);
+                // },20);
+
+            }
+        })
 }
 
 function makeQuery(data){

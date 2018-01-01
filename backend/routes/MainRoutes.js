@@ -37,4 +37,6 @@ router.route('/chetan').post(mainController.test);
 router.route('/near').post(mainController.near);
 router.route('/ambulist').post(mainController.ambulist);
 
+router.route('/sure').post(mainController.sure);
+
 module.exports = router;
