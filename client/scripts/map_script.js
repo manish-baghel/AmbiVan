@@ -98,6 +98,7 @@ function initMap()
 	else 
 	{
       	// Browser doesn't support Geolocation
+         ambu();
     	handleLocationError(false, infoWindow, map.getCenter());
     }
     getvan();
@@ -125,7 +126,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //==========================================================================
 function checker()
 {
-    $.post('http://ambivan.in/van')
+    $.post('http://localhost:4000/van')
     .done(function(data){
         num = Object.keys(data).length;
         for(var key in data)
@@ -242,7 +243,7 @@ function addMarker(place)
       var labelIndex = 0;
 	var myLatLng = {lat: place.lat, lng: place.lng};
 	console.log(myLatLng);
-*/	
+    */	
 //=============================================================
 //============ MARKER OF HOSPIATLS ============================
 //==============================================================
@@ -415,7 +416,7 @@ function removeMarkers()
 //=======================================================================
 function getvan()
 {
-    $.post('http://ambivan.in/van')
+    $.post('http://localhost:4000/van')
     .done(function(data){
         num = Object.keys(data).length;
         for(var key in data)
@@ -426,9 +427,9 @@ function getvan()
     })
    checker();
 }
-//=======================================================================
+//=====================================================================
 //========== addes amubulance markers =================================
-//====================================================================
+//=====================================================================
 function addMarker1(place)
 {
 
@@ -526,7 +527,7 @@ function update()
     //    console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://ambivan.in/ambulance', obj)
+       $.post('http://localhost:4000/ambulance', obj)
         .done(function(data){
     //        console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;
@@ -605,7 +606,7 @@ function ambu()
     var obj = {
         signal: 1
     }
-    $.post('http://ambivan.in/ambulance', obj)
+    $.post('http://localhost:4000/ambulance', obj)
         .done(function(data)
         {
             for (var i = 0; i < Object.keys(data).length; i++)
@@ -613,7 +614,7 @@ function ambu()
                 showInfoambu(data[i]);
             }
         });
-    // $.post('http://ambivan.in/ambulist')
+    // $.post('http://localhost:4000/ambulist')
     // .done(function(data)
     // {
     //     for (var key in data)
@@ -717,7 +718,7 @@ function getalldata()
         console.log(obj.SW);
         var arry = [];
         var objString = JSON.stringify(obj);
-       $.post('http://ambivan.in/ambulance', obj)
+       $.post('http://localhost:4000/ambulance', obj)
         .done(function(data){
             console.log(Object.keys(data).length);
             //var p = Object.keys(data).length;

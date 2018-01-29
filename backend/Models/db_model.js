@@ -1,9 +1,8 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-host     : process.env.RDS_HOSTNAME,
-port     : process.env.RDS_PORT,
-user     : process.env.RDS_USERNAME,
-password : process.env.RDS_PASSWORD,
+host     : 'localhost',
+user     : 'root',
+password : 'PASSWORD',
 database : 'ambivan'
 });
 
