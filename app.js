@@ -3,7 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var fs = require('fs');
-var https = require('https');
+// var https = require('https');
+var http = require('http');
 var options = {
   key: fs.readFileSync('cert/private.pem'),
   cert: fs.readFileSync('cert/ac0b1178d0ba394.crt')
@@ -42,7 +43,8 @@ var database = firebase.database();
     // profile_picture : "imageUrl"
   });
   console.log("hi"+" "+database.ref());
-
+  var currentdate = new Date();
+  console.log(currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/"  + currentdate.getFullYear() + " @ "   + currentdate.getHours() + ":"   + currentdate.getMinutes() + ":"  + currentdate.getSeconds());
 })();
 
 (function readuserdata() {
@@ -260,8 +262,11 @@ app.set('view engine', 'ejs');
 
 
 app.use('/', mainRoutes);
-https.createServer(options, app).listen(port);
+// https.createServer(options, app).listen(port);
+http.createServer(app).listen(port);
 console.log('Application running in port '+ app.get('port'));
+var currentdate = new Date();
+console.log(currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/"  + currentdate.getFullYear() + " @ "   + currentdate.getHours() + ":"   + currentdate.getMinutes() + ":"  + currentdate.getSeconds());
 // app.listen(app.get('port'), function () {
 //     console.log('Application running in port '+ app.get('port'));
 // });
