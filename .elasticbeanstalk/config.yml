@@ -7,7 +7,7 @@ environment-defaults:
     repository: null
 global:
   application_name: Ambivan
-  default_ec2_keyname: aws-ambivan-key
+  default_ec2_keyname: ambi-ssl
   default_platform: Node.js
   default_region: us-east-2
   include_git_submodules: true
