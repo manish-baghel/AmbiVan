@@ -6,8 +6,8 @@ var fs = require('fs');
 // var https = require('https');
 var http = require('http');
 var options = {
-  key: fs.readFileSync('cert/private.pem'),
-  cert: fs.readFileSync('cert/ac0b1178d0ba394.crt')
+  key: fs.readFileSync('cert/ambi-ssl.pem'),
+  // cert: fs.readFileSync('cert/ac0b1178d0ba394.crt')
 };
 var port = process.env.PORT || process.env.VCAP_APP_PORT || 443;
 var app = require('./ApplicationInstance');
