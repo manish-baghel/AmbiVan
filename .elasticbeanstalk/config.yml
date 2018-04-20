@@ -1,14 +1,15 @@
 branch-defaults:
   master:
-    environment: ambivan-env
+    environment: AmbivanIrsc-env
 environment-defaults:
-  ambivan-env:
+  AmbivanIrsc-env:
     branch: null
     repository: null
 global:
-  application_name: Ambivan
-  default_ec2_keyname: ambi-ssl
-  default_platform: Node.js
+  application_name: ambivan-irsc
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:us-east-2::platform/Node.js running on
+    64bit Amazon Linux/4.4.6
   default_region: us-east-2
   include_git_submodules: true
   instance_profile: null
